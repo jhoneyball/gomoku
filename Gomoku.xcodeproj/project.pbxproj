@@ -211,16 +211,19 @@
 				TargetAttributes = {
 					0D790BE11DB27DF7006F38C1 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = ULZ8C8UG65;
 						ProvisioningStyle = Automatic;
 					};
 					0D790BF51DB27DF7006F38C1 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = ULZ8C8UG65;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 0D790BE11DB27DF7006F38C1;
 					};
 					0D790C001DB27DF7006F38C1 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = ULZ8C8UG65;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 0D790BE11DB27DF7006F38C1;
 					};
@@ -365,6 +368,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = ULZ8C8UG65;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -416,6 +420,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = ULZ8C8UG65;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
