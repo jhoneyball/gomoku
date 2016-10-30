@@ -19,17 +19,16 @@ class GridView: UIView {
 
     
     override func draw(_ rect: CGRect) {
-        
-        let outerBoxSize = min (rect.size.width, rect.size.height)
-        let cellCount = board.getWidth() + 1
-        let cellSize = outerBoxSize / CGFloat(board.getWidth()) + 1.0
-        
+
         let context = UIGraphicsGetCurrentContext()
         let path = UIBezierPath()
-        for i in 1..<cellCount {
-            let xPosition = CGFloat(i) * cellSize
-            path.move(to: CGPoint(x: xPosition, y: cellSize))
-            path.addLine(to: CGPoint(x: xPosition, y: outerBoxSize - cellSize))
+        let lines = calculateGoBoardLines(width: rect.size.width,
+                                          height: rect.size.height,
+                                          columns: board.getWidth(), rows: board.getHeight())
+        
+        for i in 0..<lines.count {
+            path.move(to: lines[i].start)
+            path.addLine(to: lines[i].finish)
         }
         
         path.lineWidth = 1

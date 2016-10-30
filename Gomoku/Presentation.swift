@@ -24,6 +24,7 @@ func calculateGoBoardLines (width: CGFloat, height: CGFloat, columns: Int, rows:
     for column in 1...columns {
 
         let x = CGFloat(column) * (width / (CGFloat(columns) + 1.0))
+
         let coOrdinateAX = x
         let coOrdinateAY = multiplierForTopOfBoard * height
         let coOrdinateBX = x
@@ -38,12 +39,12 @@ func calculateGoBoardLines (width: CGFloat, height: CGFloat, columns: Int, rows:
     for row in 1...rows {
         
         let y = CGFloat(row) * (height / (CGFloat(rows) + 1.0))
+        
         let coOrdinateAX = multiplierForLeftOfBoard * width
         let coOrdinateAY = y
         let coOrdinateBX = multiplierForRightOfBoard * width
         let coOrdinateBY = y
-        
-        
+
         lines.append(TwoPoints(start:CGPoint(x:coOrdinateAX, y:coOrdinateAY), finish:CGPoint(x:coOrdinateBX, y:coOrdinateBY)))
     }
     
