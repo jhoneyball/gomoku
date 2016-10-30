@@ -14,7 +14,6 @@ struct TwoPoints {
     var finish: CGPoint
 }
 
-
 func calculateGoBoardLines (width: CGFloat, height: CGFloat, columns: Int, rows: Int) -> [TwoPoints]{
     var lines = [TwoPoints]()
 
