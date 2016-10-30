@@ -20,6 +20,8 @@
 		0D790C161DB27FA9006F38C1 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D790C151DB27FA9006F38C1 /* Board.swift */; };
 		0D790C181DB43649006F38C1 /* PrintBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D790C171DB43649006F38C1 /* PrintBoard.swift */; };
 		0D790C1A1DB43679006F38C1 /* PrintBoardTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D790C191DB43679006F38C1 /* PrintBoardTest.swift */; };
+		0D8F70811DC610D100A861CC /* PresentationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8F70801DC610D100A861CC /* PresentationTest.swift */; };
+		0D8F70831DC6158500A861CC /* Presentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8F70821DC6158500A861CC /* Presentation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		0D790C151DB27FA9006F38C1 /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		0D790C171DB43649006F38C1 /* PrintBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintBoard.swift; sourceTree = "<group>"; };
 		0D790C191DB43679006F38C1 /* PrintBoardTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintBoardTest.swift; sourceTree = "<group>"; };
+		0D8F70801DC610D100A861CC /* PresentationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationTest.swift; sourceTree = "<group>"; };
+		0D8F70821DC6158500A861CC /* Presentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,7 @@
 				0D6E5E271DBF43CD000AA97F /* GridView.swift */,
 				0D790C171DB43649006F38C1 /* PrintBoard.swift */,
 				0D70F5BA1DBD41F3001FC9D4 /* GomokuRules.swift */,
+				0D8F70821DC6158500A861CC /* Presentation.swift */,
 			);
 			path = Gomoku;
 			sourceTree = "<group>";
@@ -130,6 +135,7 @@
 				0D790C131DB27F28006F38C1 /* BoardTest.swift */,
 				0D790C191DB43679006F38C1 /* PrintBoardTest.swift */,
 				0D70F5B81DBD3E0E001FC9D4 /* GomokuRulesTest.swift */,
+				0D8F70801DC610D100A861CC /* PresentationTest.swift */,
 			);
 			path = GomokuTests;
 			sourceTree = "<group>";
@@ -282,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D790C181DB43649006F38C1 /* PrintBoard.swift in Sources */,
+				0D8F70831DC6158500A861CC /* Presentation.swift in Sources */,
 				0D790BE81DB27DF7006F38C1 /* ViewController.swift in Sources */,
 				0D790BE61DB27DF7006F38C1 /* AppDelegate.swift in Sources */,
 				0D790C161DB27FA9006F38C1 /* Board.swift in Sources */,
@@ -295,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D70F5B91DBD3E0E001FC9D4 /* GomokuRulesTest.swift in Sources */,
+				0D8F70811DC610D100A861CC /* PresentationTest.swift in Sources */,
 				0D790C1A1DB43679006F38C1 /* PrintBoardTest.swift in Sources */,
 				0D790C141DB27F28006F38C1 /* BoardTest.swift in Sources */,
 			);
