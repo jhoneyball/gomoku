@@ -48,5 +48,16 @@ class PresentationTest: XCTestCase {
         XCTAssertEqual (line05.finish, linesToDraw[5].finish)
 
     }
+
+    
+    
+    func testGetCGPointForCoOrds () {
+        let testPoint = getCGPointForCoOrds(col: 1, row: 1, columns: 3, rows: 3, width: 100.0, height: 100.0)
+
+        let cGPoint = CGPoint(x: CGFloat(25.0), y: CGFloat(25.0))
+        
+        XCTAssertEqual(cGPoint, testPoint)
+        
+    }
     
 }

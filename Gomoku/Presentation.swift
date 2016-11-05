@@ -49,3 +49,17 @@ func calculateGoBoardLines (width: CGFloat, height: CGFloat, columns: Int, rows:
     
     return lines
 }
+
+func getCGPointForCoOrds(col: Int, row: Int, columns: Int,
+                        rows: Int,
+                        width: CGFloat,
+                        height: CGFloat) -> CGPoint {
+   
+    let x = CGFloat(col) / CGFloat(columns + 1) * width
+    let y = CGFloat(row) / CGFloat(rows + 1) * height
+    return CGPoint(x: x, y: y)
+}
+
+func getRadiusForDimensions (cols: Int, width: CGFloat) -> CGFloat {
+    return width / CGFloat(cols) / 2.5
+}
