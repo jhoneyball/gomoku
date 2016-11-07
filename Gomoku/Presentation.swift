@@ -55,9 +55,32 @@ func getCGPointForCoOrds(col: Int, row: Int, columns: Int,
                         width: CGFloat,
                         height: CGFloat) -> CGPoint {
    
-    let x = CGFloat(col) / CGFloat(columns + 1) * width
-    let y = CGFloat(row) / CGFloat(rows + 1) * height
+    let x = CGFloat(col + 1) / CGFloat(columns + 1) * width
+    let y = CGFloat(row + 1) / CGFloat(rows + 1) * height
     return CGPoint(x: x, y: y)
+}
+
+func getCoOrdsForCGPont(cGPoint: CGPoint, width: CGFloat, height: CGFloat, columns: Int, rows: Int) -> Intersection {
+    var x = Int(round(cGPoint.x / width * CGFloat(columns+1))) - 1
+    var y = Int(round(cGPoint.y / height * CGFloat(rows+1))) - 1
+
+    switch x {
+    case _ where x < 0:
+        x = 0
+    case _ where x >= columns:
+        x = columns-1
+    default: break
+    }
+
+    switch y {
+    case _ where y < 0:
+        y = 0
+    case _ where y >= rows:
+        y = rows-1
+    default: break
+    }
+    
+    return Intersection(column: x, row: y)
 }
 
 func getRadiusForDimensions (cols: Int, width: CGFloat) -> CGFloat {

@@ -22,9 +22,17 @@ class GridView: UIView {
     }
   
     func tapped(_ tapper: UITapGestureRecognizer){
-    //    let locationOfTap = tapper.location(ofTouch: 0, in: self)
+        let locationOfTap = tapper.location(ofTouch: 0, in: self)
+        let intersection = getCoOrdsForCGPont(cGPoint: locationOfTap, width: frame.size.width, height: frame.size.height, columns: board.getWidth(), rows: board.getHeight())
+        print ("clicked column:\(intersection.column) row:\(intersection.row)")
         
-        print("Hello!")
+        do {
+            try board.place(intersection: intersection, player: Player.White)
+        } catch {
+            // do nothing
+        }
+        
+        self.setNeedsDisplay()
     }
     
     override func draw(_ rect: CGRect) {
@@ -47,7 +55,7 @@ class GridView: UIView {
         
         for col in 0..<board.getWidth() {
             for row in 0..<board.getHeight() {
-                let stone = try! board.get(intersection: Intersection(col, row))
+                let stone = try! board.get(intersection: Intersection(column: col, row: row))
                 if stone != Player.Empty {
                     
                     let centre = getCGPointForCoOrds(col: col,
