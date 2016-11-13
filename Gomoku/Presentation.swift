@@ -14,41 +14,124 @@ struct TwoPoints {
     var finish: CGPoint
 }
 
-func calculateGoBoardLines (width: CGFloat, height: CGFloat, columns: Int, rows: Int) -> [TwoPoints]{
-    var lines = [TwoPoints]()
+enum StoneColour {
+    case BLACK
+    case WHITE
+}
 
-    let multiplierForBottomOfBoard = CGFloat(rows) / (CGFloat(rows) + 1.0)
-    let multiplierForTopOfBoard = 1.0 / (CGFloat(rows) + 1.0)
+struct StoneDrawDetails {
+    var centre: CGPoint
+    var radius: CGFloat
+    var colour: StoneColour
+}
 
-    for column in 1...columns {
 
-        let x = CGFloat(column) * (width / (CGFloat(columns) + 1.0))
-
-        let coOrdinateAX = x
-        let coOrdinateAY = multiplierForTopOfBoard * height
-        let coOrdinateBX = x
-        let coOrdinateBY = multiplierForBottomOfBoard * height
-
-        lines.append(TwoPoints(start:CGPoint(x:coOrdinateAX, y:coOrdinateAY), finish:CGPoint(x:coOrdinateBX, y:coOrdinateBY)))
+class BoardPresenter {
+    private let board: Board
+    private let frame: CGRect
+    
+    init (board: Board, frame: CGRect) {
+        self.board = board
+        self.frame = frame
     }
 
-    let multiplierForLeftOfBoard = 1.0 / (CGFloat(columns) + 1.0)
-    let multiplierForRightOfBoard = CGFloat(columns) / (CGFloat(columns) + 1.0)
- 
-    for row in 1...rows {
+    
+    func tap(locationOfTap: CGPoint) {
+        let intersection = getCoOrdsForCGPont(cGPoint: locationOfTap, width: frame.size.width, height: frame.size.height, columns: board.getColumns(), rows: board.getRows())
+        print ("clicked column:\(intersection.column) row:\(intersection.row)")
         
-        let y = CGFloat(row) * (height / (CGFloat(rows) + 1.0))
+        do {
+            try board.place(intersection: intersection, player: Player.White)
+        } catch {
+            // do nothing
+        }
         
-        let coOrdinateAX = multiplierForLeftOfBoard * width
-        let coOrdinateAY = y
-        let coOrdinateBX = multiplierForRightOfBoard * width
-        let coOrdinateBY = y
+        
+    }
 
-        lines.append(TwoPoints(start:CGPoint(x:coOrdinateAX, y:coOrdinateAY), finish:CGPoint(x:coOrdinateBX, y:coOrdinateBY)))
+    func calculateGoBoardLines () -> [TwoPoints]{
+        let width = frame.size.width
+        let height = frame.size.height
+        let columns = board.getColumns()
+        let rows = board.getRows()
+        
+        
+        var lines = [TwoPoints]()
+        
+        let multiplierForBottomOfBoard = CGFloat(rows) / (CGFloat(rows) + 1.0)
+        let multiplierForTopOfBoard = 1.0 / (CGFloat(rows) + 1.0)
+        
+        for column in 1...columns {
+            
+            let x = CGFloat(column) * (width / (CGFloat(columns) + 1.0))
+            
+            let coOrdinateAX = x
+            let coOrdinateAY = multiplierForTopOfBoard * height
+            let coOrdinateBX = x
+            let coOrdinateBY = multiplierForBottomOfBoard * height
+            
+            lines.append(TwoPoints(start: CGPoint(x:coOrdinateAX, y:coOrdinateAY), finish: CGPoint(x:coOrdinateBX, y:coOrdinateBY)))
+        }
+        
+        let multiplierForLeftOfBoard = 1.0 / (CGFloat(columns) + 1.0)
+        let multiplierForRightOfBoard = CGFloat(columns) / (CGFloat(columns) + 1.0)
+        
+        for row in 1...rows {
+            
+            let y = CGFloat(row) * (height / (CGFloat(rows) + 1.0))
+            
+            let coOrdinateAX = multiplierForLeftOfBoard * width
+            let coOrdinateAY = y
+            let coOrdinateBX = multiplierForRightOfBoard * width
+            let coOrdinateBY = y
+            
+            lines.append(TwoPoints(start:CGPoint(x:coOrdinateAX, y:coOrdinateAY), finish:CGPoint(x:coOrdinateBX, y:coOrdinateBY)))
+        }
+        
+        return lines
     }
     
-    return lines
+    func calculateStonCoOrds() -> [StoneDrawDetails] {
+        
+        var stoneCoOrdArray = [StoneDrawDetails]()
+        
+        for col in 0..<board.getColumns() {
+            for row in 0..<board.getRows() {
+                let stone = try! board.get(intersection: Intersection(column: col, row: row))
+                if stone != Player.Empty {
+                    
+                    var colour: StoneColour
+                    var radius: CGFloat
+                    var centre: CGPoint
+                    
+                    if stone == Player.White {
+                        colour = StoneColour.WHITE
+                    } else {
+                        colour = StoneColour.BLACK
+                    }
+                    
+                    centre = getCGPointForCoOrds(col: col,
+                                                     row: row,
+                                                     columns: board.getColumns(),
+                                                     rows: board.getRows(),
+                                                     width: frame.size.width,
+                                                     height: frame.size.height)
+                    
+                    radius = getRadiusForDimensions(cols: board.getColumns(), width: frame.size.width)
+                    
+                    let stoneDrawDetails = StoneDrawDetails(centre: centre, radius: radius, colour: colour)
+                    stoneCoOrdArray.append(stoneDrawDetails)
+                }
+            }
+        }
+    return stoneCoOrdArray
+    }
 }
+
+private func getRadiusForDimensions (cols: Int, width: CGFloat) -> CGFloat {
+    return width / CGFloat(cols + 1) / 2.5
+}
+
 
 func getCGPointForCoOrds(col: Int, row: Int, columns: Int,
                         rows: Int,
@@ -83,6 +166,4 @@ func getCoOrdsForCGPont(cGPoint: CGPoint, width: CGFloat, height: CGFloat, colum
     return Intersection(column: x, row: y)
 }
 
-func getRadiusForDimensions (cols: Int, width: CGFloat) -> CGFloat {
-    return width / CGFloat(cols) / 2.5
-}
+

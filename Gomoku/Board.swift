@@ -13,16 +13,22 @@ class BadLocation : Error {
     
 }
 class Board {
-    internal let WIDTH = 19
-    internal let HEIGHT = 19
+    private let WIDTH: Int
+    private let HEIGHT: Int
     
-    var placedStones = [Int: Player]()
+    private var placedStones = [Int: Player]()
     
-    func getWidth() -> Int {
+    init (columns: Int, rows: Int) {
+        WIDTH = columns
+        HEIGHT = rows
+    }
+    
+    
+    func getColumns() -> Int {
         return WIDTH
     }
     
-    func getHeight() -> Int {
+    func getRows() -> Int {
         return HEIGHT
     }
     
@@ -39,7 +45,7 @@ class Board {
         placedStones [loc] = player
     }
     
-    func makelocation(intersection: Intersection) throws -> Int  {
+    private func makelocation(intersection: Intersection) throws -> Int  {
         let row = intersection.row
         let column = intersection.column
 

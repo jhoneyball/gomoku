@@ -7,8 +7,8 @@ import UIKit
 class PresentationTest: XCTestCase {
     
     func testCoOrdsCorrectFor3x3() {
-
-        var linesToDraw = calculateGoBoardLines (width: 100.0, height: 100.0, columns: 3, rows: 3)
+        let boardPresenter = BoardPresenter(board: Board(columns: 3, rows: 3), frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
+        var linesToDraw = boardPresenter.calculateGoBoardLines ()
        
         // Set up points for lines
         let cGPoint00 = CGPoint(x: CGFloat(25.0), y: CGFloat(25.0))

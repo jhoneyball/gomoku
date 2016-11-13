@@ -11,7 +11,7 @@ class PrintBoardTest: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        board = Board()
+        board = Board(columns: 19, rows: 19)
     }
     
     

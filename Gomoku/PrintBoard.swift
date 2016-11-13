@@ -5,8 +5,8 @@ class PrintBoard {
         var stringToBuild: String = ""
         var player: Player
         
-        for row in 0...board.getHeight()-1 {
-            for col in 0...board.getWidth()-1 {
+        for row in 0...board.getRows()-1 {
+            for col in 0...board.getColumns()-1 {
                 player = try! board.get(intersection: Intersection(row, col))
                 switch (player) {
                 case Player.Black:
@@ -25,8 +25,8 @@ class PrintBoard {
         var stringToBuild: String = ""
         var player: Player
         
-        for row in 0...board.getHeight()-1 {
-            for col in 0...board.getWidth()-1 {
+        for row in 0...board.getRows()-1 {
+            for col in 0...board.getColumns()-1 {
                 player = try! board.get(intersection: Intersection(row, col))
                 switch (player) {
                 case Player.Black:

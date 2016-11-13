@@ -9,7 +9,7 @@ class GomokuRules_Test: XCTestCase {
     var rules: GomokuRules!
     
     override func setUp() {
-        board = Board()
+        board = Board(columns: 19, rows: 19)
         rules = GomokuRules()
         super.setUp()
     }
@@ -59,8 +59,8 @@ class GomokuRules_Test: XCTestCase {
     func testFiveInAnyRow_isAWin() throws {
         let printBoard = PrintBoard()
         
-        for row in 0..<board.getHeight() {
-            board = Board()
+        for row in 0..<board.getRows() {
+            board = Board(columns: 19, rows: 19)
             for col in 0..<5 {
                 try board.place(intersection: Intersection(row, col), player: Player.White)
             }
