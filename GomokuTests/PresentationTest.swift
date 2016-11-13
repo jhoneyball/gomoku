@@ -49,7 +49,14 @@ class PresentationTest: XCTestCase {
 
     }
 
-    
+    func testGetRadiusForDimensionsFor() {
+        let boardPresenter = BoardPresenter(board: Board(columns: 4, rows: 4), frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
+        
+        let radius = boardPresenter.getRadiusForDimensions()
+        
+        XCTAssertEqual(8, radius)
+        
+    }
     
     func testGetCGPointForCoOrds () {
         let testPoint = getCGPointForCoOrds(col: 0, row: 0, columns: 3, rows: 3, width: 100.0, height: 100.0)

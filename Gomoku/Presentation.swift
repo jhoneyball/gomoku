@@ -117,7 +117,7 @@ class BoardPresenter {
                                                      width: frame.size.width,
                                                      height: frame.size.height)
                     
-                    radius = getRadiusForDimensions(cols: board.getColumns(), width: frame.size.width)
+                    radius = getRadiusForDimensions()
                     
                     let stoneDrawDetails = StoneDrawDetails(centre: centre, radius: radius, colour: colour)
                     stoneCoOrdArray.append(stoneDrawDetails)
@@ -126,10 +126,11 @@ class BoardPresenter {
         }
     return stoneCoOrdArray
     }
-}
-
-private func getRadiusForDimensions (cols: Int, width: CGFloat) -> CGFloat {
-    return width / CGFloat(cols + 1) / 2.5
+    
+    func getRadiusForDimensions () -> CGFloat {
+        return frame.size.width / CGFloat(board.getColumns() + 1) / 2.5
+    }
+    
 }
 
 
