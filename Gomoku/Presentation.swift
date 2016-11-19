@@ -9,6 +9,14 @@
 import Foundation
 import UIKit
 
+
+protocol inputProtocol {
+    func tap(location: CGPoint)
+    func calculateGoBoardLines() -> [TwoPoints]
+    func calculateStonCoOrds() -> [StoneDrawDetails]
+
+}
+
 struct TwoPoints {
     var start: CGPoint
     var finish: CGPoint
@@ -26,18 +34,17 @@ struct StoneDrawDetails {
 }
 
 
-class BoardPresenter {
-    private let board: Board
+class BoardPresenter: inputProtocol {
+    let board: BoardProtocol
     private let frame: CGRect
     
-    init (board: Board, frame: CGRect) {
+    init (board: BoardProtocol, frame: CGRect) {
         self.board = board
         self.frame = frame
     }
-
     
-    func tap(locationOfTap: CGPoint) {
-        let intersection = getCoOrdsForCGPont(cGPoint: locationOfTap, width: frame.size.width, height: frame.size.height, columns: board.getColumns(), rows: board.getRows())
+    func tap(location: CGPoint) {
+        let intersection = getCoOrdsForCGPont(cGPoint: location, width: frame.size.width, height: frame.size.height, columns: board.getColumns(), rows: board.getRows())
         print ("clicked column:\(intersection.column) row:\(intersection.row)")
         
         do {

@@ -1,10 +1,33 @@
+
+
+
+protocol BoardProtocol {
+    init (columns: Int, rows: Int)
+    func getColumns() -> Int
+    func getRows() -> Int
+    func stonesPlaced() -> Int
+    func place(intersection: Intersection, player: Player) throws
+    func get(intersection: Intersection) throws -> Player
+}
+
+
 enum Player {
     case White
     case Black
     case Empty
 }
 
-typealias Intersection = (row: Int, column: Int)
+//class Intersection {
+//    let column: Int
+//    let row: Int
+//
+//    init(column: Int, row: Int){
+//        self.column = column
+//        self.row = row
+//    }
+//}
+
+typealias Intersection = (column: Int, row: Int)
 
 class SpaceOccupied : Error {
     
@@ -12,13 +35,13 @@ class SpaceOccupied : Error {
 class BadLocation : Error {
     
 }
-class Board {
+class Board: BoardProtocol {
     private let WIDTH: Int
     private let HEIGHT: Int
     
     private var placedStones = [Int: Player]()
     
-    init (columns: Int, rows: Int) {
+    required init (columns: Int, rows: Int) {
         WIDTH = columns
         HEIGHT = rows
     }

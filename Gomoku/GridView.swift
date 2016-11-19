@@ -24,7 +24,7 @@ class GridView: UIView {
     func tapped(_ tapper: UITapGestureRecognizer){
         let locationOfTap = tapper.location(ofTouch: 0, in: self)
 
-        boardPresenter.tap(locationOfTap: locationOfTap)
+        boardPresenter.tap(location: locationOfTap)
         
         self.setNeedsDisplay()
     }

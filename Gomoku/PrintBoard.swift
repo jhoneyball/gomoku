@@ -7,7 +7,7 @@ class PrintBoard {
         
         for row in 0...board.getRows()-1 {
             for col in 0...board.getColumns()-1 {
-                player = try! board.get(intersection: Intersection(row, col))
+                player = try! board.get(intersection: Intersection(column: col, row: row))
                 switch (player) {
                 case Player.Black:
                         stringToBuild.append("B")
@@ -27,7 +27,7 @@ class PrintBoard {
         
         for row in 0...board.getRows()-1 {
             for col in 0...board.getColumns()-1 {
-                player = try! board.get(intersection: Intersection(row, col))
+                player = try! board.get(intersection: Intersection(column: col, row: row))
                 switch (player) {
                 case Player.Black:
                     stringToBuild.append("B")

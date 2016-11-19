@@ -62,7 +62,7 @@ class PresentationTest: XCTestCase {
         let testPoint = getCGPointForCoOrds(col: 0, row: 0, columns: 3, rows: 3, width: 100.0, height: 100.0)
 
         let cGPoint = CGPoint(x: CGFloat(25.0), y: CGFloat(25.0))
-        
+        	
         XCTAssertEqual(cGPoint, testPoint)
         
     }
@@ -96,6 +96,25 @@ class PresentationTest: XCTestCase {
         let location01 = Intersection(column: 1, row: 1)
         XCTAssertEqual(location01.column, locationUT.column)
         XCTAssertEqual(location01.row, locationUT.row)
+    }
+    
+    func testTap() {
+        class  TestBoard: Board {
+            var lastPlacedIntersection = Intersection(column: 99, row: 99)
+            
+            override func place(intersection: Intersection, player: Player) throws {
+                lastPlacedIntersection = intersection
+            }
+            
+        }
+
+        let testBoard = TestBoard(columns: 3, rows: 3)
+        let boardPresenter = BoardPresenter(board: testBoard, frame: CGRect(x: 0, y: 0, width: 100.0, height: 100.0))
+        boardPresenter.tap(location: CGPoint(x: 51.0, y: 51.0))
+
+        XCTAssertEqual(1, testBoard.lastPlacedIntersection.column)
+        XCTAssertEqual(1, testBoard.lastPlacedIntersection.row)
+        
     }
     
 }
