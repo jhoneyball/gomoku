@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.blue
         let board = Board(columns: 19, rows: 19)
-        try! board.place(intersection: Intersection(column: 1, row: 1), player: Player.Black)
+        board.place(intersection: Intersection(column: 1, row: 1), player: Player.Black)
 //        try! board.place(intersection: Intersection(row: 0, column: 0), player: Player.White)
 //        try! board.place(intersection: Intersection(row: 11, column: 11), player: Player.White)
 //        try! board.place(intersection: Intersection(row: 5, column: 10), player: Player.Black)

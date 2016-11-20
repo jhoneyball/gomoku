@@ -102,7 +102,7 @@ class PresentationTest: XCTestCase {
         class  TestBoard: Board {
             var lastPlacedIntersection = Intersection(column: 99, row: 99)
             
-            override func place(intersection: Intersection, player: Player) throws {
+            override func place(intersection: Intersection, player: Player) {
                 lastPlacedIntersection = intersection
             }
             

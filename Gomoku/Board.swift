@@ -6,7 +6,7 @@ protocol BoardProtocol {
     func getColumns() -> Int
     func getRows() -> Int
     func stonesPlaced() -> Int
-    func place(intersection: Intersection, player: Player) throws
+    func place(intersection: Intersection, player: Player)
     func get(intersection: Intersection) throws -> Player
 }
 
@@ -60,12 +60,17 @@ class Board: BoardProtocol {
         return placedStones.count
     }
     
-    func place(intersection: Intersection, player: Player) throws {
-        let loc = try makelocation(intersection: intersection)
-        if (placedStones[loc] != nil) {
-            throw SpaceOccupied()
+    func place(intersection: Intersection, player: Player) {
+        let loc: Int
+        do {
+            loc = try makelocation(intersection: intersection)
+        } catch {
+            return
         }
-        placedStones [loc] = player
+        guard placedStones[loc] != nil else {
+            placedStones[loc] = player
+            return
+        }
     }
     
     private func makelocation(intersection: Intersection) throws -> Int  {

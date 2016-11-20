@@ -16,7 +16,7 @@ class PrintBoardTest: XCTestCase {
     
     
 
-    func testBoardWithNoStonePlaye() throws {
+    func testBoardWithNoStonePlaye() {
         let emptyBoardString =
             "0000000000000000000" +
             "0000000000000000000" +
@@ -41,8 +41,8 @@ class PrintBoardTest: XCTestCase {
         XCTAssertEqual(emptyBoardString, printBoard.printAsSingleString(board: board))
     }
     
-    func testBoardWithOneStonePlayedIn3x4() throws {
-        try board.place(intersection: Intersection(column: 4, row: 3), player: Player.White)
+    func testBoardWithOneStonePlayedIn3x4() {
+        board.place(intersection: Intersection(column: 4, row: 3), player: Player.White)
         
         let boardWith4x3 =
             "0000000000000000000" +

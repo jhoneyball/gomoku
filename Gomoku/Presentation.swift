@@ -46,14 +46,7 @@ class BoardPresenter: inputProtocol {
     func tap(location: CGPoint) {
         let intersection = getCoOrdsForCGPont(cGPoint: location, width: frame.size.width, height: frame.size.height, columns: board.getColumns(), rows: board.getRows())
         print ("clicked column:\(intersection.column) row:\(intersection.row)")
-        
-        do {
-            try board.place(intersection: intersection, player: Player.White)
-        } catch {
-            // do nothing
-        }
-        
-        
+        board.place(intersection: intersection, player: Player.White)
     }
 
     func calculateGoBoardLines () -> [TwoPoints]{
