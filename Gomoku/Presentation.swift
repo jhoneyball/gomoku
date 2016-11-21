@@ -37,16 +37,19 @@ struct StoneDrawDetails {
 class BoardPresenter: inputProtocol {
     let board: BoardProtocol
     private let frame: CGRect
+    let game: Game
+    let rules = GomokuRules()
     
     init (board: BoardProtocol, frame: CGRect) {
         self.board = board
         self.frame = frame
+        self.game = Game(board: board, rules: rules)
     }
     
     func tap(location: CGPoint) {
         let intersection = getCoOrdsForCGPont(cGPoint: location, width: frame.size.width, height: frame.size.height, columns: board.getColumns(), rows: board.getRows())
         print ("clicked column:\(intersection.column) row:\(intersection.row)")
-        board.place(intersection: intersection, player: Player.White)
+        game.takeTurn(intersection: Intersection(column: intersection.column, row: intersection.row))
     }
 
     func calculateGoBoardLines () -> [TwoPoints]{
