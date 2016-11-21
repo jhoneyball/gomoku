@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.blue
-        let board = Board(columns: 3, rows: 3)
+        let board = Board(columns: 10, rows: 10)
         try! board.place(intersection: Intersection(1,1), player: Player.Black)
         try! board.place(intersection: Intersection(0,0), player: Player.White)
 //        try! board.place(intersection: Intersection(11,11), player: Player.White)
