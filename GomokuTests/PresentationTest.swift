@@ -58,45 +58,45 @@ class PresentationTest: XCTestCase {
         
     }
     
-    func testGetCGPointForCoOrds () {
-        let testPoint = getCGPointForCoOrds(col: 0, row: 0, columns: 3, rows: 3, width: 100.0, height: 100.0)
-
-        let cGPoint = CGPoint(x: CGFloat(25.0), y: CGFloat(25.0))
-        	
-        XCTAssertEqual(cGPoint, testPoint)
-        
-    }
-    
-    
-    func testGetCoOrdsForCGPont01() {
-        
-        let cGPoint = CGPoint(x: CGFloat(25.0), y: CGFloat(50.0))
-        
-        let locationUT = getCoOrdsForCGPont(cGPoint: cGPoint, width: 100.0, height: 100.0, columns: 3, rows: 3)
-        let location01 = Intersection(column: 0, row: 1)
-        XCTAssertEqual(location01.column, locationUT.column)
-        XCTAssertEqual(location01.row, locationUT.row)
-    }
-
-    func testGetCoOrdsForCGPont11TopLeft() {
-        
-        let cGPoint = CGPoint(x: CGFloat(38.0), y: CGFloat(38.0))
-        
-        let locationUT = getCoOrdsForCGPont(cGPoint: cGPoint, width: 100.0, height: 100.0, columns: 3, rows: 3)
-        let location01 = Intersection(column: 1, row: 1)
-        XCTAssertEqual(location01.column, locationUT.column)
-        XCTAssertEqual(location01.row, locationUT.row)
-    }
-
-    func testGetCoOrdsForCGPont11BottomRight() {
-        
-        let cGPoint = CGPoint(x: CGFloat(62.0), y: CGFloat(62.0))
-        
-        let locationUT = getCoOrdsForCGPont(cGPoint: cGPoint, width: 100.0, height: 100.0, columns: 3, rows: 3)
-        let location01 = Intersection(column: 1, row: 1)
-        XCTAssertEqual(location01.column, locationUT.column)
-        XCTAssertEqual(location01.row, locationUT.row)
-    }
+//    func testGetCGPointForCoOrds () {
+//        let testPoint = getCGPointForCoOrds(col: 0, row: 0, columns: 3, rows: 3, width: 100.0, height: 100.0)
+//
+//        let cGPoint = CGPoint(x: CGFloat(25.0), y: CGFloat(25.0))
+//        	
+//        XCTAssertEqual(cGPoint, testPoint)
+//        
+//    }
+//    
+//    
+//    func testGetCoOrdsForCGPont01() {
+//        
+//        let cGPoint = CGPoint(x: CGFloat(25.0), y: CGFloat(50.0))
+//        
+//        let locationUT = getCoOrdsForCGPont(cGPoint: cGPoint, width: 100.0, height: 100.0, columns: 3, rows: 3)
+//        let location01 = Intersection(column: 0, row: 1)
+//        XCTAssertEqual(location01.column, locationUT.column)
+//        XCTAssertEqual(location01.row, locationUT.row)
+//    }
+//
+//    func testGetCoOrdsForCGPont11TopLeft() {
+//        
+//        let cGPoint = CGPoint(x: CGFloat(38.0), y: CGFloat(38.0))
+//        
+//        let locationUT = getCoOrdsForCGPont(cGPoint: cGPoint, width: 100.0, height: 100.0, columns: 3, rows: 3)
+//        let location01 = Intersection(column: 1, row: 1)
+//        XCTAssertEqual(location01.column, locationUT.column)
+//        XCTAssertEqual(location01.row, locationUT.row)
+//    }
+//
+//    func testGetCoOrdsForCGPont11BottomRight() {
+//        
+//        let cGPoint = CGPoint(x: CGFloat(62.0), y: CGFloat(62.0))
+//        
+//        let locationUT = getCoOrdsForCGPont(cGPoint: cGPoint, width: 100.0, height: 100.0, columns: 3, rows: 3)
+//        let location01 = Intersection(column: 1, row: 1)
+//        XCTAssertEqual(location01.column, locationUT.column)
+//        XCTAssertEqual(location01.row, locationUT.row)
+//    }
     
     func testTap() {
         class  TestBoard: Board {

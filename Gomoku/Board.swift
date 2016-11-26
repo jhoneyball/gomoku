@@ -17,15 +17,6 @@ enum Player {
     case Empty
 }
 
-//class Intersection {
-//    let column: Int
-//    let row: Int
-//
-//    init(column: Int, row: Int){
-//        self.column = column
-//        self.row = row
-//    }
-//}
 
 typealias Intersection = (column: Int, row: Int)
 
