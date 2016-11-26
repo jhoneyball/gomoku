@@ -7,7 +7,7 @@ protocol BoardProtocol {
     func getRows() -> Int
     func stonesPlaced() -> Int
     func place(intersection: Intersection, player: Player)
-    func get(intersection: Intersection) throws -> Player
+    func get(intersection: Intersection) -> Player
 }
 
 
@@ -53,36 +53,33 @@ class Board: BoardProtocol {
     
     func place(intersection: Intersection, player: Player) {
         let loc: Int
-        do {
-            loc = try makelocation(intersection: intersection)
-        } catch {
-            return
-        }
-        guard placedStones[loc] != nil else {
-            placedStones[loc] = player
-            return
+        var error: Error?
+        (loc, error) = makelocation(intersection: intersection)
+        if error == nil {
+            if placedStones[loc] == nil {
+                placedStones[loc] = player
+            }
         }
     }
     
-    private func makelocation(intersection: Intersection) throws -> Int  {
+    private func makelocation(intersection: Intersection) -> (Int, Error?)  {
         let row = intersection.row
         let column = intersection.column
-
+        var error: Error?
+        
         if (row < 0 || row >= HEIGHT || column < 0 || column >= WIDTH) {
-            throw BadLocation()
+            error = BadLocation()
         }
-        return row * WIDTH + column
+        return (row * WIDTH + column, error)
     }
     
-    func get (intersection: Intersection) throws -> Player {
-        let loc = try makelocation(intersection: intersection)
-        if let stone = placedStones[loc] {
-            return stone
+    func get (intersection: Intersection) -> Player {
+        let (loc, error) = makelocation(intersection: intersection)
+        if (error == nil) {
+            if let stone = placedStones[loc] {
+                return stone
+            }
         }
-        else {
-            return Player.Empty
-        }
-
+        return Player.Empty
     }
-    
 }

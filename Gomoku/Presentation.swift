@@ -100,7 +100,7 @@ class BoardPresenter: inputProtocol {
         
         for col in 0..<board.getColumns() {
             for row in 0..<board.getRows() {
-                let stone = try! board.get(intersection: Intersection(column: col, row: row))
+                let stone = board.get(intersection: Intersection(column: col, row: row))
                 if stone != Player.Empty {
                     
                     var colour: StoneColour

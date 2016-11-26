@@ -7,8 +7,10 @@ class Game {
     }
     
     func takeTurn(intersection: Intersection) {
-        board.place(intersection: intersection, player: player)
-        player = other(player: player)
+        if board.get(intersection: intersection) == Player.Empty {
+            board.place(intersection: intersection, player: player)
+            player = other(player: player)          
+        }
     }
     
     func other(player: Player) -> Player {
