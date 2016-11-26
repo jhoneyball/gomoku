@@ -4,17 +4,17 @@ import UIKit
 
 class GridView: UIView {
 
-    let boardPresenter: BoardPresenter
+    var boardPresenter: BoardPresenter!
     var tapper: UITapGestureRecognizer!
     
     init (frame: CGRect, board: Board){
-        self.boardPresenter = BoardPresenter(board: board, frame: frame)
         super.init(frame: frame)
+        self.boardPresenter = BoardPresenter(board: board, frame: frame)
         self.tapper = UITapGestureRecognizer(target: self, action:#selector(self.tapped(_:)))
-        self.addGestureRecognizer(self.tapper)
         
         self.backgroundColor = UIColor(colorLiteralRed: 240/255.0, green: 200/255.0, blue: 150/255.0, alpha: 1)
-        print("init")
+
+        self.addGestureRecognizer(self.tapper)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -137,7 +137,7 @@ class BoardPresenter: inputProtocol {
 }
 
 
-func getCGPointForCoOrds(col: Int, row: Int, columns: Int,
+private func getCGPointForCoOrds(col: Int, row: Int, columns: Int,
                         rows: Int,
                         width: CGFloat,
                         height: CGFloat) -> CGPoint {
@@ -147,7 +147,7 @@ func getCGPointForCoOrds(col: Int, row: Int, columns: Int,
     return CGPoint(x: x, y: y)
 }
 
-func getCoOrdsForCGPont(cGPoint: CGPoint, width: CGFloat, height: CGFloat, columns: Int, rows: Int) -> Intersection {
+private func getCoOrdsForCGPont(cGPoint: CGPoint, width: CGFloat, height: CGFloat, columns: Int, rows: Int) -> Intersection {
     var x = Int(round(cGPoint.x / width * CGFloat(columns+1))) - 1
     var y = Int(round(cGPoint.y / height * CGFloat(rows+1))) - 1
 
