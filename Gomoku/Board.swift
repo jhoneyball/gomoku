@@ -17,8 +17,8 @@ enum Player {
     case Empty
 }
 
-
 typealias Intersection = (column: Int, row: Int)
+
 
 class SpaceOccupied : Error {
     
@@ -49,6 +49,38 @@ class Board: BoardProtocol {
     
     func stonesPlaced() -> Int {
         return placedStones.count
+    }
+    
+    func right(of: Intersection) -> Intersection? {
+        if of.column < (getColumns() - 1) {
+            return Intersection(column: of.column + 1, row: of.row)
+        } else {
+            return nil
+        }
+    }
+    
+    func left(of: Intersection) -> Intersection? {
+        if of.column > 0 {
+            return Intersection(column: of.column - 1, row: of.row)
+        } else {
+            return nil
+        }
+    }
+    
+    func above(of: Intersection) -> Intersection? {
+        if of.row > 0 {
+            return Intersection(column: of.column, row: of.row - 1)
+        } else {
+            return nil
+        }
+    }
+    
+    func below(of: Intersection) -> Intersection? {
+        if of.row < (getRows() - 1) {
+            return Intersection(column: of.column, row: of.column + 1)
+        } else {
+            return nil
+        }
     }
     
     func place(intersection: Intersection, player: Player) {
@@ -82,4 +114,5 @@ class Board: BoardProtocol {
         }
         return Player.Empty
     }
+
 }
