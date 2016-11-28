@@ -28,11 +28,11 @@ class GameTest: XCTestCase {
         
         XCTAssertEqual(Player.White, game.whosTurn())
         XCTAssertEqual(Player.Empty, board.get(intersection: Intersection(column: 0, row: 0)))
+
         game.takeTurn(intersection: Intersection(column: 0, row: 0))
+
         XCTAssertEqual(Player.White, board.get(intersection: Intersection(column: 0, row: 0)))
         XCTAssertEqual(Player.Black, game.whosTurn())
-        
-        
     }
     
 }

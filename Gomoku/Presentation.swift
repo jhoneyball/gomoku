@@ -34,7 +34,7 @@ struct StoneDrawDetails {
 }
 
 
-class BoardPresenter: inputProtocol {
+class GamePresenter: inputProtocol {
     let board: BoardProtocol
     private let frame: CGRect
     let game: Game

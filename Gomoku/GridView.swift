@@ -4,12 +4,10 @@ import UIKit
 
 class GridView: UIView {
 
-    var boardPresenter: BoardPresenter!
     var tapper: UITapGestureRecognizer!
     
-    init (frame: CGRect, board: Board){
+    init (frame: CGRect, board: Board, gamePresenter: GamePresenter){
         super.init(frame: frame)
-        self.boardPresenter = BoardPresenter(board: board, frame: frame)
         self.tapper = UITapGestureRecognizer(target: self, action:#selector(self.tapped(_:)))
         
         self.backgroundColor = UIColor(colorLiteralRed: 240/255.0, green: 200/255.0, blue: 150/255.0, alpha: 1)
@@ -24,7 +22,7 @@ class GridView: UIView {
     func tapped(_ tapper: UITapGestureRecognizer){
         let locationOfTap = tapper.location(ofTouch: 0, in: self)
 
-        boardPresenter.tap(location: locationOfTap)
+        gamePresenter.tap(location: locationOfTap)
         
         self.setNeedsDisplay()
     }
@@ -34,7 +32,7 @@ class GridView: UIView {
         // Draw grid lines
         let path = UIBezierPath()
         path.lineWidth = 1
-        let lines = boardPresenter.calculateGoBoardLines()
+        let lines = gamePresenter.calculateGoBoardLines()
         
         for i in 0..<lines.count {
             path.move(to: lines[i].start)
@@ -44,7 +42,7 @@ class GridView: UIView {
         path.removeAllPoints()
 
         // Draw stones
-        let stoneCoOrds = boardPresenter.calculateStonCoOrds()
+        let stoneCoOrds = gamePresenter.calculateStonCoOrds()
         for i in 0..<stoneCoOrds.count {
             path.move(to: stoneCoOrds[i].centre)
             if stoneCoOrds[i].colour == StoneColour.WHITE {
