@@ -10,7 +10,7 @@ import XCTest
 @testable import Gomoku
 
 class GameTest: XCTestCase {
-
+    
     
     func testCanCreateGame() {
         let board = Board(columns: 19, rows: 19)
@@ -27,10 +27,10 @@ class GameTest: XCTestCase {
         let game = Game(board: board, rules: rules)
         
         XCTAssertEqual(Player.White, game.whosTurn())
-        
+        XCTAssertEqual(Player.Empty, board.get(intersection: Intersection(column: 0, row: 0)))
         game.takeTurn(intersection: Intersection(column: 0, row: 0))
-        
-        //XCTAssertEqual(Player.White, board.get(0,0))
+        XCTAssertEqual(Player.White, board.get(intersection: Intersection(column: 0, row: 0)))
+        XCTAssertEqual(Player.Black, game.whosTurn())
         
         
     }

@@ -16,12 +16,12 @@ class GomokuRules_Test: XCTestCase {
     
     
     func testEmptyBoardIsNotWin() {
-        try XCTAssertFalse(rules.isWin(board: board))
+        XCTAssertFalse(rules.isWin(board: board))
     }
 
     func testNotEmptyBoardButNotWin_isNotAWin() throws {
         board.place(intersection: Intersection(column: 1, row: 1), player: Player.White)
-        try XCTAssertFalse(rules.isWin(board: board))
+        XCTAssertFalse(rules.isWin(board: board))
     }
 
     
@@ -31,7 +31,7 @@ class GomokuRules_Test: XCTestCase {
         for col in 0..<5 {
             board.place(intersection: Intersection(column: col, row: 0), player: Player.White)
         }
-        try XCTAssertTrue(rules.isWin(board: board))
+        XCTAssertTrue(rules.isWin(board: board))
         print (printBoard.printAsFormattedString (board: board))
     }
     
@@ -42,7 +42,7 @@ class GomokuRules_Test: XCTestCase {
             board.place(intersection: Intersection(column: col, row: 0), player: Player.White)
             
         }
-        try XCTAssertFalse(rules.isWin(board: board))
+        XCTAssertFalse(rules.isWin(board: board))
         print (printBoard.printAsFormattedString (board: board))
     }
     
@@ -52,7 +52,7 @@ class GomokuRules_Test: XCTestCase {
         for col in 0..<6 {
             board.place(intersection: Intersection(column: col, row: 0), player: Player.White)
         }
-        try XCTAssertTrue(rules.isWin(board: board))
+        XCTAssertTrue(rules.isWin(board: board))
         print (printBoard.printAsFormattedString (board: board))
     }
     
@@ -65,7 +65,7 @@ class GomokuRules_Test: XCTestCase {
                 board.place(intersection: Intersection(column: col, row: row), player: Player.White)
             }
             print (printBoard.printAsFormattedString (board: board))
-        try XCTAssertTrue(rules.isWin(board: board))
+        XCTAssertTrue(rules.isWin(board: board))
         }
     }
     

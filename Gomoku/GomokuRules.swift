@@ -1,5 +1,5 @@
 class GomokuRules {
-    func isWin(board: Board) throws -> Bool {
+    func isWin(board: Board) -> Bool {
         
         var playerPiecesInARow = 0
         var fiveOrMoreInARow : Bool = false
