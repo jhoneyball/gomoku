@@ -20,9 +20,9 @@ class ViewController: UIViewController {
         gamePresenter = GamePresenter(board: board, frame: gridFrame)
         let gridView = GridView(frame: gridFrame, board: board, gamePresenter: gamePresenter)
 
-//        gridView.tapResponder = {
-//            self.didTapped()
-//        }
+        gridView.tapResponder = {
+            self.didTapped()
+        }
         
         self.view.addSubview(gridView)
         statusLabel = UILabel(frame: CGRect(x: 0.0, y: 20.0, width: self.view.frame.size.width, height: 25.0))
@@ -33,9 +33,9 @@ class ViewController: UIViewController {
         
     }
     
-// func didTapped () {
-//        statusLabel.text = gamePresenter.statusLabelText()
-//    }
+ func didTapped () {
+        statusLabel.text = gamePresenter.statusLabelText()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

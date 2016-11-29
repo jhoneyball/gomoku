@@ -2,13 +2,13 @@
 
 import UIKit
 
-//typealias TapResponder = () -> ()
+typealias TapResponder = () -> ()
 
 class GridView: UIView {
 
     var tapper: UITapGestureRecognizer!
     var gamePresenter: GamePresenter!
-//    var tapResponder: TapResponder!
+    var tapResponder: TapResponder!
     
     init (frame: CGRect, board: Board, gamePresenter: GamePresenter){
         super.init(frame: frame)
@@ -25,15 +25,11 @@ class GridView: UIView {
     
     func tapped(_ tapper: UITapGestureRecognizer){
         let locationOfTap = tapper.location(ofTouch: 0, in: self)
-        
         gamePresenter.tap(location: locationOfTap)
+        self.tapResponder()
         self.setNeedsDisplay()
     }
-    
-//    func setResponder (responder: @escaping TapResponder) {
-//        self.tapResponder = responder
-//    }
-    
+ 
     override func draw(_ rect: CGRect) {
         
         // Draw grid lines
