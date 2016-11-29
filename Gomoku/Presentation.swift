@@ -134,6 +134,10 @@ class GamePresenter: inputProtocol {
         return frame.size.width / CGFloat(board.getColumns() + 1) / 2.5
     }
     
+    func statusLabelText() -> String {
+        return "Player: \(game.whosTurn())"
+    }
+    
 }
 
 

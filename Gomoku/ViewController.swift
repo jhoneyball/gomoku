@@ -17,15 +17,25 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor.blue
         let board = Board(columns: 19, rows: 19)
         let gridFrame = CGRect(x: 0, y: 75, width: self.view.frame.size.width, height: self.view.frame.size.width)
-        let gamePresenter = GamePresenter(board: board, frame: gridFrame)
+        gamePresenter = GamePresenter(board: board, frame: gridFrame)
         let gridView = GridView(frame: gridFrame, board: board, gamePresenter: gamePresenter)
-        self.view.addSubview(gridView)
 
-        let statusLabel = UILabel(frame: CGRect(x: 100.0, y: 100.0, width: 100.0, height: 100.0))
+//        gridView.tapResponder = {
+//            self.didTapped()
+//        }
+        
+        self.view.addSubview(gridView)
+        statusLabel = UILabel(frame: CGRect(x: 0.0, y: 20.0, width: self.view.frame.size.width, height: 25.0))
+        statusLabel.textColor = UIColor.white
+        statusLabel.textAlignment = NSTextAlignment.center
         self.view.addSubview(statusLabel)
-        statusLabel.text = gamePresenter.status()
+        statusLabel.text = gamePresenter.statusLabelText()
         
     }
+    
+// func didTapped () {
+//        statusLabel.text = gamePresenter.statusLabelText()
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

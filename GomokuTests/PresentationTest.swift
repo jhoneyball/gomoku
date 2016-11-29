@@ -7,8 +7,8 @@ import UIKit
 class PresentationTest: XCTestCase {
     
     func testCoOrdsCorrectFor3x3() {
-        let boardPresenter = BoardPresenter(board: Board(columns: 3, rows: 3), frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
-        var linesToDraw = boardPresenter.calculateGoBoardLines ()
+        let gamePresenter = GamePresenter(board: Board(columns: 3, rows: 3), frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
+        var linesToDraw = gamePresenter.calculateGoBoardLines ()
        
         // Set up points for lines
         let cGPoint00 = CGPoint(x: CGFloat(25.0), y: CGFloat(25.0))
@@ -50,9 +50,9 @@ class PresentationTest: XCTestCase {
     }
 
     func testGetRadiusForDimensionsFor() {
-        let boardPresenter = BoardPresenter(board: Board(columns: 4, rows: 4), frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
+        let gamePresenter = GamePresenter(board: Board(columns: 4, rows: 4), frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
 
-        let radius = boardPresenter.getRadiusForDimensions()
+        let radius = gamePresenter.getRadiusForDimensions()
 
         XCTAssertEqual(8, radius)
         
@@ -109,11 +109,22 @@ class PresentationTest: XCTestCase {
         }
 
         let testBoard = TestBoard(columns: 3, rows: 3)
-        let boardPresenter = BoardPresenter(board: testBoard, frame: CGRect(x: 0, y: 0, width: 100.0, height: 100.0))
-        boardPresenter.tap(location: CGPoint(x: 51.0, y: 51.0))
+        let gamePresenter = GamePresenter(board: testBoard, frame: CGRect(x: 0, y: 0, width: 100.0, height: 100.0))
+        gamePresenter.tap(location: CGPoint(x: 51.0, y: 51.0))
 
         XCTAssertEqual(1, testBoard.lastPlacedIntersection.column)
         XCTAssertEqual(1, testBoard.lastPlacedIntersection.row)
+        
+    }
+    func testStatusLabel() {
+        
+        let boardy = Board(columns: 5, rows: 5)
+        let gamePresenter = GamePresenter(board: boardy, frame: CGRect(x: 0, y: 0, width: 100.0, height: 100.0))
+        
+        XCTAssertEqual("Player: White", gamePresenter.statusLabelText())
+        
+        
+        
         
     }
     
