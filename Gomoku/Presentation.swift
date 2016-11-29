@@ -9,6 +9,14 @@
 import Foundation
 import UIKit
 
+
+protocol inputProtocol {
+    func tap(location: CGPoint)
+    func calculateGoBoardLines() -> [TwoPoints]
+    func calculateStonCoOrds() -> [StoneDrawDetails]
+
+}
+
 struct TwoPoints {
     var start: CGPoint
     var finish: CGPoint
@@ -26,27 +34,22 @@ struct StoneDrawDetails {
 }
 
 
-class BoardPresenter {
-    private let board: Board
+class GamePresenter: inputProtocol {
+    let board: BoardProtocol
     private let frame: CGRect
+    let game: Game
+    let rules = GomokuRules()
     
-    init (board: Board, frame: CGRect) {
+    init (board: BoardProtocol, frame: CGRect) {
         self.board = board
         self.frame = frame
+        self.game = Game(board: board, rules: rules)
     }
-
     
-    func tap(locationOfTap: CGPoint) {
-        let intersection = getCoOrdsForCGPont(cGPoint: locationOfTap, width: frame.size.width, height: frame.size.height, columns: board.getColumns(), rows: board.getRows())
+    func tap(location: CGPoint) {
+        let intersection = getCoOrdsForCGPont(cGPoint: location, width: frame.size.width, height: frame.size.height, columns: board.getColumns(), rows: board.getRows())
         print ("clicked column:\(intersection.column) row:\(intersection.row)")
-        
-        do {
-            try board.place(intersection: intersection, player: Player.White)
-        } catch {
-            // do nothing
-        }
-        
-        
+        game.takeTurn(intersection: Intersection(column: intersection.column, row: intersection.row))
     }
 
     func calculateGoBoardLines () -> [TwoPoints]{
@@ -97,7 +100,7 @@ class BoardPresenter {
         
         for col in 0..<board.getColumns() {
             for row in 0..<board.getRows() {
-                let stone = try! board.get(intersection: Intersection(column: col, row: row))
+                let stone = board.get(intersection: Intersection(column: col, row: row))
                 if stone != Player.Empty {
                     
                     var colour: StoneColour
@@ -131,10 +134,14 @@ class BoardPresenter {
         return frame.size.width / CGFloat(board.getColumns() + 1) / 2.5
     }
     
+    func statusLabelText() -> String {
+        return "Player: \(game.whosTurn())"
+    }
+    
 }
 
 
-func getCGPointForCoOrds(col: Int, row: Int, columns: Int,
+private func getCGPointForCoOrds(col: Int, row: Int, columns: Int,
                         rows: Int,
                         width: CGFloat,
                         height: CGFloat) -> CGPoint {
@@ -144,7 +151,7 @@ func getCGPointForCoOrds(col: Int, row: Int, columns: Int,
     return CGPoint(x: x, y: y)
 }
 
-func getCoOrdsForCGPont(cGPoint: CGPoint, width: CGFloat, height: CGFloat, columns: Int, rows: Int) -> Intersection {
+private func getCoOrdsForCGPont(cGPoint: CGPoint, width: CGFloat, height: CGFloat, columns: Int, rows: Int) -> Intersection {
     var x = Int(round(cGPoint.x / width * CGFloat(columns+1))) - 1
     var y = Int(round(cGPoint.y / height * CGFloat(rows+1))) - 1
 

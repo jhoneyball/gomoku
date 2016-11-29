@@ -1,5 +1,5 @@
 class GomokuRules {
-    func isWin(board: Board) throws -> Bool {
+    func isWin(board: Board) -> Bool {
         
         var playerPiecesInARow = 0
         var fiveOrMoreInARow : Bool = false
@@ -7,7 +7,7 @@ class GomokuRules {
         for row in 0..<board.getRows() {
             playerPiecesInARow = 0
             for col in 0..<board.getColumns() {
-                let playerPiece = try board.get(intersection: Intersection(row, col))
+                let playerPiece = board.get(intersection: Intersection(column: col, row: row))
                 if playerPiece == Player.White {
                     playerPiecesInARow += 1
                 }

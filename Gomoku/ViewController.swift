@@ -9,7 +9,9 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    var gamePresenter: GamePresenter!
+    var statusLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.blue
@@ -24,6 +26,16 @@ class ViewController: UIViewController {
 
         let gridView = GridView(frame: CGRect(x: 0, y: 75, width: self.view.frame.size.width, height: self.view.frame.size.width), board: board)
         self.view.addSubview(gridView)
+        statusLabel = UILabel(frame: CGRect(x: 0.0, y: 20.0, width: self.view.frame.size.width, height: 25.0))
+        statusLabel.textColor = UIColor.white
+        statusLabel.textAlignment = NSTextAlignment.center
+        self.view.addSubview(statusLabel)
+        statusLabel.text = gamePresenter.statusLabelText()
+        
+    }
+    
+ func didTapped () {
+        statusLabel.text = gamePresenter.statusLabelText()
     }
 
     override func didReceiveMemoryWarning() {
