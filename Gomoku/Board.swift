@@ -109,7 +109,7 @@ class Board: BoardProtocol {
     
     func leftBelow(of: Intersection) -> Intersection? {
         if of.column > 0 && of.row < (getRows() - 1) {
-            return Intersection(column: of.column - 1, row: of.column + 1)
+            return Intersection(column: of.column - 1, row: of.row + 1)
         } else {
             return nil
         }
