@@ -82,6 +82,40 @@ class Board: BoardProtocol {
             return nil
         }
     }
+
+    func rightAbove(of: Intersection) -> Intersection? {
+        if of.column < (getColumns() - 1) && of.row > 0 {
+            return Intersection(column: of.column + 1, row: of.row - 1)
+        } else {
+            return nil
+        }
+    }
+    
+    func rightBelow(of: Intersection) -> Intersection? {
+        if of.column < (getColumns() - 1) && of.row < (getRows() - 1) {
+            return Intersection(column: of.column + 1, row: of.row + 1)
+        } else {
+            return nil
+        }
+    }
+    
+    func leftAbove(of: Intersection) -> Intersection? {
+        if of.column > 0 && of.row > 0 {
+            return Intersection(column: of.column - 1, row: of.row - 1)
+        } else {
+            return nil
+        }
+    }
+    
+    func leftBelow(of: Intersection) -> Intersection? {
+        if of.column > 0 && of.row < (getRows() - 1) {
+            return Intersection(column: of.column - 1, row: of.column + 1)
+        } else {
+            return nil
+        }
+    }
+    
+    
     
     func place(intersection: Intersection, player: Player) {
         let loc: Int
