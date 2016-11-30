@@ -188,56 +188,64 @@ class BoardTest: XCTestCase {
         }
     }
     
-//
-//    func testIntersectionOnLeft() {
-//        let miniBoard = Board(columns: 3, rows: 3)
-//        let intersection22 = Intersection(column: 2, row: 2)
-//        let intersection12 = Intersection(column: 1, row: 2)
-//        
-//        if let intersectionOnTheLeftOf22 = miniBoard.left(of: intersection22) {
-//            XCTAssertEqual(Player.Empty, miniBoard.get(intersection: intersectionOnTheLeftOf22))
-//            miniBoard.place(intersection: intersection12, player: Player.White)
-//            XCTAssertEqual(Player.White, miniBoard.get(intersection: intersectionOnTheLeftOf22))
-//        } else {
-//            XCTFail()
-//        }
-//    }
-//    
-//    func testIntersectionOnAbove() {
-//        let miniBoard = Board(columns: 3, rows: 3)
-//        let intersection22 = Intersection(column: 2, row: 2)
-//        let intersection21 = Intersection(column: 2, row: 1)
-//        
-//        if let intersectionAbove22 = miniBoard.above(of: intersection22) {
-//            XCTAssertEqual(Player.Empty, miniBoard.get(intersection: intersectionAbove22))
-//            miniBoard.place(intersection: intersection21, player: Player.Black)
-//            XCTAssertEqual(Player.Black, miniBoard.get(intersection: intersectionAbove22))
-//        } else {
-//            XCTFail()
-//        }
-//    }
-//    
-//    func testNoIntersectionOnRight() {
-//        let miniBoard = Board(columns: 3, rows: 3)
-//        XCTAssertNil(miniBoard.right(of: Intersection(column: 2, row: 0)))
-//    }
-//    
-//    func testNoIntersectionOnLeft() {
-//        let miniBoard = Board(columns: 3, rows: 3)
-//        XCTAssertNil(miniBoard.left(of: Intersection(column: 0, row: 0)))
-//    }
-//    
-//    func testNoIntersectionOnAbove() {
-//        let miniBoard = Board(columns: 3, rows: 3)
-//        XCTAssertNil(miniBoard.above(of: Intersection(column: 2, row: 0)))
-//    }
-//    
-//    func testNoIntersectionOnBelow() {
-//        let miniBoard = Board(columns: 3, rows: 3)
-//        XCTAssertNil(miniBoard.below(of: Intersection(column: 2, row: 2)))
-//    }
-//
-//
+
+    func testIntersectionOnLeftAbove() {
+        let miniBoard = Board(columns: 3, rows: 3)
+        let intersection11 = Intersection(column: 1, row: 1)
+        let intersection00 = Intersection(column: 0, row: 0)
+        
+        if let intersectionOnTheLeftAboveOf11 = miniBoard.leftAbove(of: intersection11) {
+            XCTAssertEqual(Player.Empty, miniBoard.get(intersection: intersectionOnTheLeftAboveOf11))
+            miniBoard.place(intersection: intersection00, player: Player.White)
+            XCTAssertEqual(Player.White, miniBoard.get(intersection: intersectionOnTheLeftAboveOf11))
+        } else {
+            XCTFail()
+        }
+    }
+    
+    func testIntersectionOnLeftBelow() {
+        let miniBoard = Board(columns: 3, rows: 3)
+        let intersection11 = Intersection(column: 1, row: 1)
+        let intersection02 = Intersection(column: 0, row: 2)
+        
+        if let intersectionLeftBelow11 = miniBoard.leftBelow(of: intersection11) {
+            XCTAssertEqual(Player.Empty, miniBoard.get(intersection: intersectionLeftBelow11))
+            miniBoard.place(intersection: intersection02, player: Player.Black)
+            XCTAssertEqual(Player.Black, miniBoard.get(intersection: intersectionLeftBelow11))
+        } else {
+            XCTFail()
+        }
+    }
+
+    func testNoIntersectionOnRightAbove() {
+        let miniBoard = Board(columns: 3, rows: 3)
+        XCTAssertNil(miniBoard.rightAbove(of: Intersection(column: 1, row: 0)))
+        XCTAssertNil(miniBoard.rightAbove(of: Intersection(column: 2, row: 0)))
+        XCTAssertNil(miniBoard.rightAbove(of: Intersection(column: 2, row: 1)))
+    }
+    
+    func testNoIntersectionOnRightBelow() {
+        let miniBoard = Board(columns: 3, rows: 3)
+        XCTAssertNil(miniBoard.rightBelow(of: Intersection(column: 2, row: 1)))
+        XCTAssertNil(miniBoard.rightBelow(of: Intersection(column: 2, row: 2)))
+        XCTAssertNil(miniBoard.rightBelow(of: Intersection(column: 1, row: 2)))
+    }
+    
+    func testNoIntersectionOnLeftAbove() {
+        let miniBoard = Board(columns: 3, rows: 3)
+        XCTAssertNil(miniBoard.leftAbove(of: Intersection(column: 0, row: 1)))
+        XCTAssertNil(miniBoard.leftAbove(of: Intersection(column: 0, row: 0)))
+        XCTAssertNil(miniBoard.leftAbove(of: Intersection(column: 1, row: 0)))
+    }
+    
+    func testNoIntersectionOnLeftBelow() {
+        let miniBoard = Board(columns: 3, rows: 3)
+        XCTAssertNil(miniBoard.leftBelow(of: Intersection(column: 1, row: 2)))
+        XCTAssertNil(miniBoard.leftBelow(of: Intersection(column: 0, row: 2)))
+        XCTAssertNil(miniBoard.leftBelow(of: Intersection(column: 0, row: 1)))
+    }
+
+
 
 
 
