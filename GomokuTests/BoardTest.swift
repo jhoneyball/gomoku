@@ -187,6 +187,7 @@ class BoardTest: XCTestCase {
             XCTFail()
         }
     }
+    
 //
 //    func testIntersectionOnLeft() {
 //        let miniBoard = Board(columns: 3, rows: 3)
