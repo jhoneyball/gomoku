@@ -77,7 +77,7 @@ class Board: BoardProtocol {
     
     func below(of: Intersection) -> Intersection? {
         if of.row < (getRows() - 1) {
-            return Intersection(column: of.column, row: of.column + 1)
+            return Intersection(column: of.column, row: of.row + 1)
         } else {
             return nil
         }
