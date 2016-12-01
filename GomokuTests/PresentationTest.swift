@@ -7,7 +7,7 @@ import UIKit
 class PresentationTest: XCTestCase {
     
     func testCoOrdsCorrectFor3x3() {
-        let gamePresenter = GamePresenter(board: Board(columns: 3, rows: 3), frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
+        let gamePresenter = GamePresenter(board: BoardData(columns: 3, rows: 3), frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
         var linesToDraw = gamePresenter.calculateGoBoardLines ()
        
         // Set up points for lines
@@ -50,7 +50,7 @@ class PresentationTest: XCTestCase {
     }
 
     func testGetRadiusForDimensionsFor() {
-        let gamePresenter = GamePresenter(board: Board(columns: 4, rows: 4), frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
+        let gamePresenter = GamePresenter(board: BoardData(columns: 4, rows: 4), frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
 
         let radius = gamePresenter.getRadiusForDimensions()
 
@@ -97,9 +97,9 @@ class PresentationTest: XCTestCase {
 //        XCTAssertEqual(location01.column, locationUT.column)
 //        XCTAssertEqual(location01.row, locationUT.row)
 //    }
-    
+
     func testTap() {
-        class  TestBoard: Board {
+        class  TestBoard: BoardData {
             var lastPlacedIntersection = Intersection(column: 99, row: 99)
             
             override func place(intersection: Intersection, player: Player) {
@@ -118,7 +118,7 @@ class PresentationTest: XCTestCase {
     }
     func testStatusLabel() {
         
-        let boardy = Board(columns: 5, rows: 5)
+        let boardy = BoardData(columns: 5, rows: 5)
         let gamePresenter = GamePresenter(board: boardy, frame: CGRect(x: 0, y: 0, width: 100.0, height: 100.0))
         
         XCTAssertEqual("Player: White", gamePresenter.statusLabelText())

@@ -13,7 +13,7 @@ class GameTest: XCTestCase {
     
     
     func testCanCreateGame() {
-        let board = Board(columns: 19, rows: 19)
+        let board = BoardData(columns: 19, rows: 19)
         let rules = GomokuRules()
         let game = Game(board: board, rules: rules)
         
@@ -22,7 +22,7 @@ class GameTest: XCTestCase {
     }
     
     func testAfterWhitesTurn_isBlackTurn() {
-        let board = Board(columns: 19, rows: 19)
+        let board = BoardData(columns: 19, rows: 19)
         let rules = GomokuRules()
         let game = Game(board: board, rules: rules)
         

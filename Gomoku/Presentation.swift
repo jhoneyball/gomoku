@@ -35,12 +35,12 @@ struct StoneDrawDetails {
 
 
 class GamePresenter: inputProtocol {
-    let board: BoardProtocol
+    let board: Board
     private let frame: CGRect
     let game: Game
     let rules = GomokuRules()
     
-    init (board: BoardProtocol, frame: CGRect) {
+    init (board: Board, frame: CGRect) {
         self.board = board
         self.frame = frame
         self.game = Game(board: board, rules: rules)

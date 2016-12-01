@@ -10,7 +10,7 @@ class GomokuRules {
                 intersectionToCheck = Intersection(column: col, row: row)
                 player = board.get(intersection: intersectionToCheck)
                 if player != Player.Empty {
-                    if (checkIsWin(board: board, intersection: intersectionToCheck, player: player)) {
+                    if (checkIsWin(board: board as! BoardState, intersection: intersectionToCheck, player: player)) {
                         return player
                     }
                 }
@@ -20,7 +20,7 @@ class GomokuRules {
         return nil
     }
     
-    func checkIsWin(board: Board, intersection: Intersection, player: Player) -> Bool {
+    func checkIsWin(board: BoardState, intersection: Intersection, player: Player) -> Bool {
         
         
         let horizontal = countHorizontal(board: board, intersection: intersection, player: player)
@@ -36,7 +36,7 @@ class GomokuRules {
         return false
     }
     
-    func countHorizontal (board: Board, intersection: Intersection, player: Player) -> Int  {
+    func countHorizontal (board: BoardState, intersection: Intersection, player: Player) -> Int  {
         var horizontal = 1
         var cursor = intersection
         
@@ -53,7 +53,7 @@ class GomokuRules {
         return horizontal
     }
     
-    func countVertical (board: Board, intersection: Intersection, player: Player) -> Int {
+    func countVertical (board: BoardState, intersection: Intersection, player: Player) -> Int {
         
         var vertical = 1
         var cursor = intersection
@@ -69,7 +69,7 @@ class GomokuRules {
         return vertical
     }
     
-    func countDiagonalBLTR (board: Board, intersection: Intersection, player: Player) -> Int {
+    func countDiagonalBLTR (board: BoardState, intersection: Intersection, player: Player) -> Int {
         
         var diaganolBLTR = 1
         var cursor = intersection
@@ -86,7 +86,7 @@ class GomokuRules {
         return diaganolBLTR
     }
     
-    func countDiagonalTLBR (board: Board, intersection: Intersection, player: Player) -> Int {
+    func countDiagonalTLBR (board: BoardState, intersection: Intersection, player: Player) -> Int {
         //diaganol TLBR check
         var diaganolTLBR = 1
         var cursor = intersection

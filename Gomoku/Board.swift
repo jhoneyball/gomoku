@@ -1,7 +1,7 @@
 
 
 
-protocol BoardProtocol {
+protocol Board {
     init (columns: Int, rows: Int)
     func getColumns() -> Int
     func getRows() -> Int
@@ -10,6 +10,19 @@ protocol BoardProtocol {
     func get(intersection: Intersection) -> Player
 }
 
+protocol BoardState {
+    func get(intersection: Intersection) -> Player
+    func getColumns() -> Int
+    func getRows() -> Int
+    func right(of: Intersection) -> Intersection?
+    func left(of: Intersection) -> Intersection?
+    func above(of: Intersection) -> Intersection?
+    func below(of: Intersection) -> Intersection?
+    func rightAbove(of: Intersection) -> Intersection?
+    func rightBelow(of: Intersection) -> Intersection?
+    func leftAbove(of: Intersection) -> Intersection?
+    func leftBelow(of: Intersection) -> Intersection?
+}
 
 enum Player {
     case White
@@ -26,7 +39,8 @@ class SpaceOccupied : Error {
 class BadLocation : Error {
     
 }
-class Board: BoardProtocol {
+
+class BoardData: Board, BoardState {
     private let WIDTH: Int
     private let HEIGHT: Int
     

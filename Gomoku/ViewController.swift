@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.blue
-        let board = Board(columns: 19, rows: 19)
+        let board = BoardData(columns: 19, rows: 19)
         let gridFrame = CGRect(x: 0, y: 75, width: self.view.frame.size.width, height: self.view.frame.size.width)
         gamePresenter = GamePresenter(board: board, frame: gridFrame)
         let gridView = GridView(frame: gridFrame, board: board, gamePresenter: gamePresenter)
