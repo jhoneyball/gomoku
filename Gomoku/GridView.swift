@@ -10,7 +10,7 @@ class GridView: UIView {
     var gamePresenter: GamePresenter!
     var tapResponder: TapResponder!
     
-    init (frame: CGRect, board: Board, gamePresenter: GamePresenter){
+    init (frame: CGRect, board: BoardState, gamePresenter: GamePresenter){
         super.init(frame: frame)
         self.gamePresenter = gamePresenter
         self.tapper = UITapGestureRecognizer(target: self, action:#selector(self.tapped(_:)))

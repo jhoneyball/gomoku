@@ -40,7 +40,13 @@ class BadLocation : Error {
     
 }
 
-class BoardData: Board, BoardState {
+class BoardFactory {
+    static func makeBoard(columns: Int, rows: Int) -> Board {
+        return BoardData(columns: columns, rows: rows)
+    }
+}
+
+private class BoardData: Board, BoardState {
     private let WIDTH: Int
     private let HEIGHT: Int
     

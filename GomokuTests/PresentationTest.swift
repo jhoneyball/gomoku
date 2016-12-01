@@ -7,7 +7,7 @@ import UIKit
 class PresentationTest: XCTestCase {
     
     func testCoOrdsCorrectFor3x3() {
-        let gamePresenter = GamePresenter(board: BoardData(columns: 3, rows: 3), frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
+        let gamePresenter = GamePresenter(board: BoardFactory.makeBoard(columns: 3, rows: 3), frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
         var linesToDraw = gamePresenter.calculateGoBoardLines ()
        
         // Set up points for lines
@@ -50,7 +50,7 @@ class PresentationTest: XCTestCase {
     }
 
     func testGetRadiusForDimensionsFor() {
-        let gamePresenter = GamePresenter(board: BoardData(columns: 4, rows: 4), frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
+        let gamePresenter = GamePresenter(board: BoardFactory.makeBoard(columns: 4, rows: 4), frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
 
         let radius = gamePresenter.getRadiusForDimensions()
 
@@ -99,11 +99,33 @@ class PresentationTest: XCTestCase {
 //    }
 
     func testTap() {
-        class  TestBoard: BoardData {
+        final class TestBoard: Board, BoardState {
+            var board: Board
+            var boardState: BoardState
+            init (columns: Int, rows: Int) {
+                board = BoardFactory.makeBoard(columns: columns, rows: rows)
+                boardState = board as! BoardState
+            }
+            func getColumns() -> Int { return board.getColumns() }
+            func getRows() -> Int { return board.getRows()}
+            func stonesPlaced() -> Int {return board.stonesPlaced()}
+            func get(intersection: Intersection) -> Player {return board.get(intersection: intersection)}
+            func right(of: Intersection) -> Intersection? {return boardState.right(of: of)}
+            func left(of: Intersection) -> Intersection? {return boardState.left(of: of)}
+            func above(of: Intersection) -> Intersection? {return boardState.above(of: of)}
+            func below(of: Intersection) -> Intersection? {return boardState.below(of: of)}
+            func rightAbove(of: Intersection) -> Intersection? {return boardState.rightAbove(of: of)}
+            func rightBelow(of: Intersection) -> Intersection? {return boardState.rightBelow(of: of)}
+            func leftAbove(of: Intersection) -> Intersection? {return boardState.leftAbove(of: of)}
+            func leftBelow(of: Intersection) -> Intersection? {return boardState.leftBelow(of: of)}
+
+            
+            
             var lastPlacedIntersection = Intersection(column: 99, row: 99)
             
-            override func place(intersection: Intersection, player: Player) {
+            func place(intersection: Intersection, player: Player) {
                 lastPlacedIntersection = intersection
+                board.place(intersection: intersection, player: player)
             }
             
         }
@@ -118,7 +140,7 @@ class PresentationTest: XCTestCase {
     }
     func testStatusLabel() {
         
-        let boardy = BoardData(columns: 5, rows: 5)
+        let boardy = BoardFactory.makeBoard(columns: 5, rows: 5)
         let gamePresenter = GamePresenter(board: boardy, frame: CGRect(x: 0, y: 0, width: 100.0, height: 100.0))
         
         XCTAssertEqual("Player: White", gamePresenter.statusLabelText())

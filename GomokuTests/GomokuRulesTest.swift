@@ -5,11 +5,11 @@ import XCTest
 
 class GomokuRules_Test: XCTestCase {
     
-    var board: BoardData!
+    var board: Board!
     var rules: GomokuRules!
     
     override func setUp() {
-        board = BoardData(columns: 19, rows: 19)
+        board = BoardFactory.makeBoard(columns: 19, rows: 19)
         rules = GomokuRules()
         super.setUp()
     }
@@ -60,7 +60,7 @@ class GomokuRules_Test: XCTestCase {
         let printBoard = PrintBoard()
         
         for row in 0..<board.getRows() {
-            board = BoardData(columns: 19, rows: 19)
+            board = BoardFactory.makeBoard(columns: 19, rows: 19)
             for col in 0..<5 {
                 board.place(intersection: Intersection(column: col, row: row), player: Player.White)
             }
