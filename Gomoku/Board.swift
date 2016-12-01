@@ -134,9 +134,7 @@ private class BoardData: Board, BoardState {
             return nil
         }
     }
-    
-    
-    
+
     func place(intersection: Intersection, player: Player) {
         let loc: Int
         var error: Error?
