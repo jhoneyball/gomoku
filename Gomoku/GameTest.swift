@@ -14,8 +14,7 @@ class GameTest: XCTestCase {
     
     func testCanCreateGame() {
         let board = BoardFactory.makeBoard(columns: 19, rows: 19)
-        let rules = GomokuRules()
-        let game = Game(board: board, rules: rules)
+        let game = GameFactory.makeGomokuGame(board: board)
         
         XCTAssertEqual(Player.White, game.whosTurn())
         
@@ -23,8 +22,7 @@ class GameTest: XCTestCase {
     
     func testAfterWhitesTurn_isBlackTurn() {
         let board = BoardFactory.makeBoard(columns: 19, rows: 19)
-        let rules = GomokuRules()
-        let game = Game(board: board, rules: rules)
+        let game = GameFactory.makeGomokuGame(board: board)
         
         XCTAssertEqual(Player.White, game.whosTurn())
         XCTAssertEqual(Player.Empty, board.get(intersection: Intersection(column: 0, row: 0)))

@@ -7,7 +7,8 @@ import UIKit
 class PresentationTest: XCTestCase {
     
     func testCoOrdsCorrectFor3x3() {
-        let gamePresenter = GamePresenter(board: BoardFactory.makeBoard(columns: 3, rows: 3), frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
+        let gamePresenter = PresentationFactory.makeGamePresenter(frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0), columns: 3, rows: 3)
+        
         var linesToDraw = gamePresenter.calculateGoBoardLines ()
        
         // Set up points for lines
@@ -49,14 +50,14 @@ class PresentationTest: XCTestCase {
 
     }
 
-    func testGetRadiusForDimensionsFor() {
-        let gamePresenter = GamePresenter(board: BoardFactory.makeBoard(columns: 4, rows: 4), frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
-
-        let radius = gamePresenter.getRadiusForDimensions()
-
-        XCTAssertEqual(8, radius)
-        
-    }
+//    func testGetRadiusForDimensionsFor() {
+//        let gamePresenter = PresentationFactory.makeGamePresenter(frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0), columns: 4, rows: 4)
+//
+//        let radius = gamePresenter.getRadiusForDimensions()
+//
+//        XCTAssertEqual(8, radius)
+//        
+//    }
     
 //    func testGetCGPointForCoOrds () {
 //        let testPoint = getCGPointForCoOrds(col: 0, row: 0, columns: 3, rows: 3, width: 100.0, height: 100.0)
@@ -99,50 +100,16 @@ class PresentationTest: XCTestCase {
 //    }
 
     func testTap() {
-        final class TestBoard: Board, BoardState {
-            var board: Board
-            var boardState: BoardState
-            init (columns: Int, rows: Int) {
-                board = BoardFactory.makeBoard(columns: columns, rows: rows)
-                boardState = board as! BoardState
-            }
-            func getColumns() -> Int { return board.getColumns() }
-            func getRows() -> Int { return board.getRows()}
-            func stonesPlaced() -> Int {return board.stonesPlaced()}
-            func get(intersection: Intersection) -> Player {return board.get(intersection: intersection)}
-            func right(of: Intersection) -> Intersection? {return boardState.right(of: of)}
-            func left(of: Intersection) -> Intersection? {return boardState.left(of: of)}
-            func above(of: Intersection) -> Intersection? {return boardState.above(of: of)}
-            func below(of: Intersection) -> Intersection? {return boardState.below(of: of)}
-            func rightAbove(of: Intersection) -> Intersection? {return boardState.rightAbove(of: of)}
-            func rightBelow(of: Intersection) -> Intersection? {return boardState.rightBelow(of: of)}
-            func leftAbove(of: Intersection) -> Intersection? {return boardState.leftAbove(of: of)}
-            func leftBelow(of: Intersection) -> Intersection? {return boardState.leftBelow(of: of)}
+        let gamePresenter = PresentationFactory.makeTestGamePresenter(frame: CGRect(x: 0, y: 0, width: 100.0, height: 100.0), columns: 3, rows: 3)
 
-            
-            
-            var lastPlacedIntersection = Intersection(column: 99, row: 99)
-            
-            func place(intersection: Intersection, player: Player) {
-                lastPlacedIntersection = intersection
-                board.place(intersection: intersection, player: player)
-            }
-            
-        }
-
-        let testBoard = TestBoard(columns: 3, rows: 3)
-        let gamePresenter = GamePresenter(board: testBoard, frame: CGRect(x: 0, y: 0, width: 100.0, height: 100.0))
-        gamePresenter.tap(location: CGPoint(x: 51.0, y: 51.0))
-
-        XCTAssertEqual(1, testBoard.lastPlacedIntersection.column)
-        XCTAssertEqual(1, testBoard.lastPlacedIntersection.row)
-        
+        XCTAssertEqual(Player.Empty, gamePresenter.getFromBoard(intersection: Intersection(column: 2, row: 1)))
+        gamePresenter.tap(location: CGPoint(x: 76.0, y: 51.0))
+        XCTAssertEqual(Player.White, gamePresenter.getFromBoard(intersection: Intersection(column: 2, row: 1)))
+      
     }
+    
     func testStatusLabel() {
-        
-        let boardy = BoardFactory.makeBoard(columns: 5, rows: 5)
-        let gamePresenter = GamePresenter(board: boardy, frame: CGRect(x: 0, y: 0, width: 100.0, height: 100.0))
-        
+        let gamePresenter = PresentationFactory.makeGamePresenter(frame: CGRect(x: 0, y: 0, width: 100.0, height: 100.0))
         XCTAssertEqual("Player: White", gamePresenter.statusLabelText())
         
     }

@@ -10,11 +10,15 @@ import Foundation
 import UIKit
 
 
-protocol inputProtocol {
+protocol GamePresenter {
     func tap(location: CGPoint)
     func calculateGoBoardLines() -> [TwoPoints]
     func calculateStonCoOrds() -> [StoneDrawDetails]
+    func statusLabelText() -> String
+}
 
+protocol TestGamePresenter: GamePresenter {
+    func getFromBoard(intersection: Intersection) -> Player
 }
 
 struct TwoPoints {
@@ -34,21 +38,37 @@ struct StoneDrawDetails {
 }
 
 
-class GamePresenter: inputProtocol {
-    let board: Board
-    private let frame: CGRect
-    let game: Game
-    let rules = GomokuRules()
+class PresentationFactory {
+    static func makeGamePresenter(frame: CGRect) -> GamePresenter {
+        return GamePresenterImplmentation(frame: frame)
+    }
+    static func makeGamePresenter(frame: CGRect, columns: Int, rows: Int) -> GamePresenter {
+        return GamePresenterImplmentation(frame: frame, columns: columns, rows: rows)
+    }
+    static func makeTestGamePresenter(frame: CGRect, columns: Int, rows: Int) -> TestGamePresenter {
+        return TestGamePresenterImplmentation(frame: frame, columns: columns, rows: rows)
+    }
+}
+
+private class TestGamePresenterImplmentation: GamePresenterImplmentation, TestGamePresenter {
+    func getFromBoard(intersection: Intersection) -> Player {
+       return board.get(intersection: intersection)
+    }
+}
+
+private class GamePresenterImplmentation: GamePresenter {
+    var board: Board
+    var game: GameGomoku
+    var frame: CGRect
     
-    init (board: Board, frame: CGRect) {
-        self.board = board
+    init (frame: CGRect, columns:Int = 19, rows:Int = 19) {
+        self.board = BoardFactory.makeBoard(columns: columns, rows: rows)
         self.frame = frame
-        self.game = Game(board: board, rules: rules)
+        self.game = GameFactory.makeGomokuGame(board: self.board)
     }
     
     func tap(location: CGPoint) {
         let intersection = getCoOrdsForCGPont(cGPoint: location, width: frame.size.width, height: frame.size.height, columns: board.getColumns(), rows: board.getRows())
-        print ("clicked column:\(intersection.column) row:\(intersection.row)")
         game.takeTurn(intersection: Intersection(column: intersection.column, row: intersection.row))
         }
 
@@ -130,7 +150,7 @@ class GamePresenter: inputProtocol {
     return stoneCoOrdArray
     }
     
-    func getRadiusForDimensions () -> CGFloat {
+    private func getRadiusForDimensions () -> CGFloat {
         return frame.size.width / CGFloat(board.getColumns() + 1) / 2.5
     }
     
@@ -142,40 +162,37 @@ class GamePresenter: inputProtocol {
         }
     }
     
-}
-
-
-private func getCGPointForCoOrds(col: Int, row: Int, columns: Int,
-                        rows: Int,
-                        width: CGFloat,
-                        height: CGFloat) -> CGPoint {
-   
-    let x = CGFloat(col + 1) / CGFloat(columns + 1) * width
-    let y = CGFloat(row + 1) / CGFloat(rows + 1) * height
-    return CGPoint(x: x, y: y)
-}
-
-private func getCoOrdsForCGPont(cGPoint: CGPoint, width: CGFloat, height: CGFloat, columns: Int, rows: Int) -> Intersection {
-    var x = Int(round(cGPoint.x / width * CGFloat(columns+1))) - 1
-    var y = Int(round(cGPoint.y / height * CGFloat(rows+1))) - 1
-
-    switch x {
-    case _ where x < 0:
-        x = 0
-    case _ where x >= columns:
-        x = columns-1
-    default: break
-    }
-
-    switch y {
-    case _ where y < 0:
-        y = 0
-    case _ where y >= rows:
-        y = rows-1
-    default: break
+    private func getCGPointForCoOrds(col: Int, row: Int, columns: Int,
+                                     rows: Int,
+                                     width: CGFloat,
+                                     height: CGFloat) -> CGPoint {
+        
+        let x = CGFloat(col + 1) / CGFloat(columns + 1) * width
+        let y = CGFloat(row + 1) / CGFloat(rows + 1) * height
+        return CGPoint(x: x, y: y)
     }
     
-    return Intersection(column: x, row: y)
+    private func getCoOrdsForCGPont(cGPoint: CGPoint, width: CGFloat, height: CGFloat, columns: Int, rows: Int) -> Intersection {
+        var x = Int(round(cGPoint.x / width * CGFloat(columns+1))) - 1
+        var y = Int(round(cGPoint.y / height * CGFloat(rows+1))) - 1
+        
+        switch x {
+        case _ where x < 0:
+            x = 0
+        case _ where x >= columns:
+            x = columns-1
+        default: break
+        }
+        
+        switch y {
+        case _ where y < 0:
+            y = 0
+        case _ where y >= rows:
+            y = rows-1
+        default: break
+        }
+        
+        return Intersection(column: x, row: y)
+    }
+    
 }
-
-

@@ -9,16 +9,18 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var gamePresenter: GamePresenter!
     var statusLabel: UILabel!
+    var gamePresenter: GamePresenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.blue
-        let board = BoardFactory.makeBoard(columns: 19, rows: 19)
+
         let gridFrame = CGRect(x: 0, y: 75, width: self.view.frame.size.width, height: self.view.frame.size.width)
-        gamePresenter = GamePresenter(board: board, frame: gridFrame)
-        let gridView = GridView(frame: gridFrame, board: board as! BoardState, gamePresenter: gamePresenter)
+        
+        gamePresenter = PresentationFactory.makeGamePresenter(frame: gridFrame)
+        
+        let gridView = GridView(frame: gridFrame, gamePresenter: gamePresenter)
 
         gridView.tapResponder = {
             self.didTapped()
@@ -30,7 +32,6 @@ class ViewController: UIViewController {
         statusLabel.textAlignment = NSTextAlignment.center
         self.view.addSubview(statusLabel)
         statusLabel.text = gamePresenter.statusLabelText()
-        
     }
     
  func didTapped () {

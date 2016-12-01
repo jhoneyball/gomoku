@@ -4,15 +4,27 @@ struct Win {
     var player: Player?
 }
 
-class Game {
+protocol GameGomoku {
+    func takeTurn(intersection: Intersection)
+    func other(player: Player) -> Player
+    func whosTurn() -> Player
+    var win: Win {get}
+}
+
+class GameFactory {
+    static func makeGomokuGame (board: Board) -> GameGomoku {
+        return GameGomokuImplementation(board: board)
+    }
+}
+
+private class GameGomokuImplementation: GameGomoku {
     let board: Board
     private var player = Player.White
-    var rules: GomokuRules
+    var rules = GomokuRules()
     var win = Win(state: false, player: nil)
 
-    init (board: Board, rules: GomokuRules) {
+    init (board: Board) {
         self.board = board
-        self.rules = rules
     }
     
     func takeTurn(intersection: Intersection) {
@@ -30,7 +42,6 @@ class Game {
     func other(player: Player) -> Player {
         return player == Player.White ? Player.Black : Player.White
     }
-    
     
     func whosTurn() -> Player {
         return player
