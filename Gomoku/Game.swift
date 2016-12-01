@@ -1,20 +1,29 @@
+
+struct Win {
+    var state: Bool
+    var player: Player?
+}
+
 class Game {
     let board: BoardProtocol
-    var player = Player.White
+    private var player = Player.White
     var rules: GomokuRules
-    
+    var win = Win(state: false, player: nil)
+
     init (board: BoardProtocol, rules: GomokuRules) {
         self.board = board
         self.rules = rules
     }
     
     func takeTurn(intersection: Intersection) {
-        if board.get(intersection: intersection) == Player.Empty {
-            board.place(intersection: intersection, player: whosTurn())
-            if (rules.checkIsWin(board: board as! Board, intersection: intersection, player: player)) {
-                print ("Game Over")
+        if win.state == false {
+            if board.get(intersection: intersection) == Player.Empty {
+                board.place(intersection: intersection, player: player)
+                if rules.checkIsWin(board: board as! Board, intersection: intersection, player: player) {
+                    win = Win(state: true, player: player)
+                }
+                player = other(player: player)
             }
-            player = other(player: player)
         }
     }
     

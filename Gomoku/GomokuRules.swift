@@ -1,5 +1,5 @@
 class GomokuRules {
-    func isWin(board: Board) -> Bool {
+    func isWin(board: Board) -> Player? {
         
         var player: Player
         var intersectionToCheck: Intersection
@@ -11,13 +11,13 @@ class GomokuRules {
                 player = board.get(intersection: intersectionToCheck)
                 if player != Player.Empty {
                     if (checkIsWin(board: board, intersection: intersectionToCheck, player: player)) {
-                        return true
+                        return player
                     }
                 }
             
             }
         }
-        return false
+        return nil
     }
     
     func checkIsWin(board: Board, intersection: Intersection, player: Player) -> Bool {

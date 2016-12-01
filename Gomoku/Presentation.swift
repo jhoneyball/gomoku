@@ -50,7 +50,7 @@ class GamePresenter: inputProtocol {
         let intersection = getCoOrdsForCGPont(cGPoint: location, width: frame.size.width, height: frame.size.height, columns: board.getColumns(), rows: board.getRows())
         print ("clicked column:\(intersection.column) row:\(intersection.row)")
         game.takeTurn(intersection: Intersection(column: intersection.column, row: intersection.row))
-    }
+        }
 
     func calculateGoBoardLines () -> [TwoPoints]{
         let width = frame.size.width
@@ -135,7 +135,11 @@ class GamePresenter: inputProtocol {
     }
     
     func statusLabelText() -> String {
-        return "Player: \(game.whosTurn())"
+        if game.win.state == true {
+            return ("Game won by \(game.win.player!)")
+        } else {
+            return "Player: \(game.whosTurn())"
+        }
     }
     
 }

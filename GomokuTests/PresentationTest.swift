@@ -123,9 +123,6 @@ class PresentationTest: XCTestCase {
         
         XCTAssertEqual("Player: White", gamePresenter.statusLabelText())
         
-        
-        
-        
     }
     
 }
