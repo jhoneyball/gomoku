@@ -1,7 +1,7 @@
 
 class PrintBoard {
     
-    func  printAsSingleString(board: Board) -> String {
+    static func  printAsSingleString(board: Board) -> String {
         var stringToBuild: String = ""
         var player: Player
         
@@ -21,7 +21,7 @@ class PrintBoard {
         return stringToBuild
     }
     
-    func  printAsFormattedString(board: Board) -> String {
+    static func  printAsFormattedString(board: Board) -> String {
         var stringToBuild: String = ""
         var player: Player
         

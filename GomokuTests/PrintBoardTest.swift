@@ -7,7 +7,6 @@ import XCTest
 
 class PrintBoardTest: XCTestCase {
     var board: Board!
-    let printBoard = PrintBoard()
     
     override func setUp() {
         super.setUp()
@@ -38,7 +37,7 @@ class PrintBoardTest: XCTestCase {
             "0000000000000000000" +
             "0000000000000000000"
                 
-        XCTAssertEqual(emptyBoardString, printBoard.printAsSingleString(board: board))
+        XCTAssertEqual(emptyBoardString, PrintBoard.printAsSingleString(board: board))
     }
     
     func testBoardWithOneStonePlayedIn3x4() {
@@ -65,7 +64,7 @@ class PrintBoardTest: XCTestCase {
             "0000000000000000000" +
             "0000000000000000000"
         
-        XCTAssertEqual(boardWith4x3, printBoard.printAsSingleString(board: board))
+        XCTAssertEqual(boardWith4x3, PrintBoard.printAsSingleString(board: board))
        
         
     }

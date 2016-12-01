@@ -35,6 +35,7 @@ private class GameGomokuImplementation: GameGomoku {
                     win = Win(state: true, player: player)
                 }
                 player = other(player: player)
+                print(PrintBoard.printAsFormattedString(board: board))
             }
         }
     }

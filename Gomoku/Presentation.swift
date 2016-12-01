@@ -57,14 +57,14 @@ private class TestGamePresenterImplmentation: GamePresenterImplmentation, TestGa
 }
 
 private class GamePresenterImplmentation: GamePresenter {
-    var board: Board
+    var board: BoardState
     var game: GameGomoku
     var frame: CGRect
     
     init (frame: CGRect, columns:Int = 19, rows:Int = 19) {
-        self.board = BoardFactory.makeBoard(columns: columns, rows: rows)
+        self.board = BoardFactory.makeBoard(columns: columns, rows: rows) as! BoardState
         self.frame = frame
-        self.game = GameFactory.makeGomokuGame(board: self.board)
+        self.game = GameFactory.makeGomokuGame(board: self.board as! Board)
     }
     
     func tap(location: CGPoint) {
