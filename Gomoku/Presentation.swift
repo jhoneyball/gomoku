@@ -38,6 +38,7 @@ struct StoneDrawDetails {
 }
 
 
+
 class PresentationFactory {
     static func makeGamePresenter(frame: CGRect) -> GamePresenter {
         return GamePresenterImplmentation(frame: frame)
