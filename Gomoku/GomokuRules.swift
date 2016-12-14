@@ -1,10 +1,9 @@
 class GomokuRules {
     func isWin(board: Board) -> Player? {
-        
+
         var player: Player
         var intersectionToCheck: Intersection
- 
-    
+
         for col in 0..<board.getColumns() {
             for row in 0..<board.getRows() {
                 intersectionToCheck = Intersection(column: col, row: row)
@@ -14,32 +13,30 @@ class GomokuRules {
                         return player
                     }
                 }
-            
             }
         }
         return nil
     }
-    
+
     func checkIsWin(board: BoardState, intersection: Intersection, player: Player) -> Bool {
-        
-        
+
         let horizontal = countHorizontal(board: board, intersection: intersection, player: player)
         let vertical = countVertical(board: board, intersection: intersection, player: player)
         let diaganolBLTR = countDiagonalBLTR(board: board, intersection: intersection, player: player)
         let diaganolTLBR = countDiagonalTLBR(board: board, intersection: intersection, player: player)
-        
+
         print ("\(player) : \(horizontal) horizontal. \(vertical) vertical. \(diaganolBLTR) BLTR diagonal. \(diaganolTLBR) TLBR diagonal.")
-        
+
         if horizontal > 4 || vertical > 4 || diaganolBLTR > 4 || diaganolTLBR > 4 {
             return true
         }
         return false
     }
-    
-    func countHorizontal (board: BoardState, intersection: Intersection, player: Player) -> Int  {
+
+    func countHorizontal (board: BoardState, intersection: Intersection, player: Player) -> Int {
         var horizontal = 1
         var cursor = intersection
-        
+
         //horizontal checks
         while board.right(of: cursor) != nil && board.get(intersection: board.right(of: cursor)!) == player {
             horizontal += 1
@@ -52,9 +49,9 @@ class GomokuRules {
         }
         return horizontal
     }
-    
+
     func countVertical (board: BoardState, intersection: Intersection, player: Player) -> Int {
-        
+
         var vertical = 1
         var cursor = intersection
         while board.above(of: cursor) != nil && board.get(intersection: board.above(of: cursor)!) == player {
@@ -68,12 +65,12 @@ class GomokuRules {
         }
         return vertical
     }
-    
+
     func countDiagonalBLTR (board: BoardState, intersection: Intersection, player: Player) -> Int {
-        
+
         var diaganolBLTR = 1
         var cursor = intersection
-        
+
         while board.rightAbove(of: cursor) != nil && board.get(intersection: board.rightAbove(of: cursor)!) == player {
             diaganolBLTR += 1
             cursor = board.rightAbove(of: cursor)!
@@ -85,7 +82,7 @@ class GomokuRules {
         }
         return diaganolBLTR
     }
-    
+
     func countDiagonalTLBR (board: BoardState, intersection: Intersection, player: Player) -> Int {
         //diaganol TLBR check
         var diaganolTLBR = 1
@@ -102,4 +99,3 @@ class GomokuRules {
         return diaganolTLBR
     }
 }
-

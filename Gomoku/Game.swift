@@ -1,4 +1,3 @@
-
 struct Win {
     var state: Bool
     var player: Player?
@@ -26,7 +25,7 @@ private class GameGomokuImplementation: GameGomoku {
     init (board: Board) {
         self.board = board
     }
-    
+
     func takeTurn(intersection: Intersection) {
         if win.state == false {
             if board.get(intersection: intersection) == Player.Empty {
@@ -39,11 +38,11 @@ private class GameGomokuImplementation: GameGomoku {
             }
         }
     }
-    
+
     func other(player: Player) -> Player {
         return player == Player.White ? Player.Black : Player.White
     }
-    
+
     func whosTurn() -> Player {
         return player
     }

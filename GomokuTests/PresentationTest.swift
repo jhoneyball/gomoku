@@ -1,16 +1,15 @@
-
 import XCTest
 import UIKit
 
 @testable import Gomoku
 
 class PresentationTest: XCTestCase {
-    
+
     func testCoOrdsCorrectFor3x3() {
         let gamePresenter = PresentationFactory.makeGamePresenter(frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0), columns: 3, rows: 3)
-        
+
         var linesToDraw = gamePresenter.calculateGoBoardLines ()
-       
+
         // Set up points for lines
         let cGPoint00 = CGPoint(x: CGFloat(25.0), y: CGFloat(25.0))
         let cGPoint01 = CGPoint(x: CGFloat(25.0), y: CGFloat(50.0))
@@ -20,7 +19,7 @@ class PresentationTest: XCTestCase {
         let cGPoint20 = CGPoint(x: CGFloat(75.0), y: CGFloat(25.0))
         let cGPoint21 = CGPoint(x: CGFloat(75.0), y: CGFloat(50.0))
         let cGPoint22 = CGPoint(x: CGFloat(75.0), y: CGFloat(75.0))
-        
+
         // Set up lines
         let line00 = TwoPoints (start: cGPoint00, finish: cGPoint02)
         let line01 = TwoPoints (start: cGPoint10, finish: cGPoint12)
@@ -28,7 +27,6 @@ class PresentationTest: XCTestCase {
         let line03 = TwoPoints (start: cGPoint00, finish: cGPoint20)
         let line04 = TwoPoints (start: cGPoint01, finish: cGPoint21)
         let line05 = TwoPoints (start: cGPoint02, finish: cGPoint22)
-        
 
         XCTAssertEqual (line00.start, linesToDraw[0].start)
         XCTAssertEqual (line00.finish, linesToDraw[0].finish)
@@ -58,7 +56,7 @@ class PresentationTest: XCTestCase {
 //        XCTAssertEqual(8, radius)
 //        
 //    }
-    
+
 //    func testGetCGPointForCoOrds () {
 //        let testPoint = getCGPointForCoOrds(col: 0, row: 0, columns: 3, rows: 3, width: 100.0, height: 100.0)
 //
@@ -105,13 +103,12 @@ class PresentationTest: XCTestCase {
         XCTAssertEqual(Player.Empty, gamePresenter.getFromBoard(intersection: Intersection(column: 2, row: 1)))
         gamePresenter.tap(location: CGPoint(x: 76.0, y: 51.0))
         XCTAssertEqual(Player.White, gamePresenter.getFromBoard(intersection: Intersection(column: 2, row: 1)))
-      
+
     }
-    
+
     func testStatusLabel() {
         let gamePresenter = PresentationFactory.makeGamePresenter(frame: CGRect(x: 0, y: 0, width: 100.0, height: 100.0))
         XCTAssertEqual("Player: White", gamePresenter.statusLabelText())
-        
+
     }
-    
 }

@@ -1,0 +1,6 @@
+disabled_rules:
+  - line_length
+
+
+variable_name:
+  min_length: 2

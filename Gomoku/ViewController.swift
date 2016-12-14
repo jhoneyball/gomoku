@@ -11,21 +11,21 @@ import UIKit
 class ViewController: UIViewController {
     var statusLabel: UILabel!
     var gamePresenter: GamePresenter!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.blue
 
         let gridFrame = CGRect(x: 0, y: 75, width: self.view.frame.size.width, height: self.view.frame.size.width)
-        
+
         gamePresenter = PresentationFactory.makeGamePresenter(frame: gridFrame)
-        
+
         let gridView = GridView(frame: gridFrame, gamePresenter: gamePresenter)
 
         gridView.tapResponder = {
             self.didTapped()
         }
-        
+
         self.view.addSubview(gridView)
         statusLabel = UILabel(frame: CGRect(x: 0.0, y: 20.0, width: self.view.frame.size.width, height: 25.0))
         statusLabel.textColor = UIColor.white
@@ -33,8 +33,8 @@ class ViewController: UIViewController {
         self.view.addSubview(statusLabel)
         statusLabel.text = gamePresenter.statusLabelText()
     }
-    
- func didTapped () {
+
+    func didTapped () {
         statusLabel.text = gamePresenter.statusLabelText()
     }
 
@@ -42,7 +42,4 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
-

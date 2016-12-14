@@ -1,14 +1,13 @@
-
 class PrintBoard {
-    
+
     static func  printAsSingleString(board: Board) -> String {
         var stringToBuild: String = ""
         var player: Player
-        
+
         for row in 0...board.getRows()-1 {
             for col in 0...board.getColumns()-1 {
                 player = board.get(intersection: Intersection(column: col, row: row))
-                switch (player) {
+                switch player {
                 case Player.Black:
                         stringToBuild.append("B")
                 case Player.White:
@@ -20,15 +19,15 @@ class PrintBoard {
         }
         return stringToBuild
     }
-    
+
     static func  printAsFormattedString(board: Board) -> String {
         var stringToBuild: String = ""
         var player: Player
-        
+
         for row in 0...board.getRows()-1 {
             for col in 0...board.getColumns()-1 {
                 player = board.get(intersection: Intersection(column: col, row: row))
-                switch (player) {
+                switch player {
                 case Player.Black:
                     stringToBuild.append("B")
                 case Player.White:
