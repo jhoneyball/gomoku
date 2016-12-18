@@ -9,8 +9,10 @@ class GomokuRules {
                 intersectionToCheck = Intersection(column: col, row: row)
                 player = board.get(intersection: intersectionToCheck)
                 if player != Player.Empty {
-                    if (checkIsWin(board: board as! BoardState, intersection: intersectionToCheck, player: player)) {
-                        return player
+                    if let boardState = board as? BoardState {
+                        if (checkIsWin(board: boardState, intersection: intersectionToCheck, player: player)) {
+                            return player
+                        }
                     }
                 }
             }

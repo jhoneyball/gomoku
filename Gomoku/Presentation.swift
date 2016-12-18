@@ -55,14 +55,14 @@ private class TestGamePresenterImplmentation: GamePresenterImplmentation, TestGa
 }
 
 private class GamePresenterImplmentation: GamePresenter {
-    var board: BoardState
+    var board: Board
     var game: GameGomoku
     var frame: CGRect
 
     init (frame: CGRect, columns: Int = 19, rows: Int = 19) {
-        self.board = BoardFactory.makeBoard(columns: columns, rows: rows) as! BoardState
+        self.board = BoardFactory.makeBoard(columns: columns, rows: rows)
         self.frame = frame
-        self.game = GameFactory.makeGomokuGame(board: self.board as! Board)
+        self.game = GameFactory.makeGomokuGame(board: self.board)
     }
 
     func tap(location: CGPoint) {
@@ -134,8 +134,7 @@ private class GamePresenterImplmentation: GamePresenter {
                                                  row: row,
                                                  columns: board.getColumns(),
                                                  rows: board.getRows(),
-                                                 width: frame.size.width,
-                                                 height: frame.size.height)
+                                                 frame: frame)
 
                     radius = getRadiusForDimensions()
 
@@ -159,13 +158,14 @@ private class GamePresenterImplmentation: GamePresenter {
         }
     }
 
-    private func getCGPointForCoOrds(col: Int, row: Int, columns: Int,
+    private func getCGPointForCoOrds(col: Int,
+                                     row: Int,
+                                     columns: Int,
                                      rows: Int,
-                                     width: CGFloat,
-                                     height: CGFloat) -> CGPoint {
+                                     frame: CGRect) -> CGPoint {
 
-        let x = CGFloat(col + 1) / CGFloat(columns + 1) * width
-        let y = CGFloat(row + 1) / CGFloat(rows + 1) * height
+        let x = CGFloat(col + 1) / CGFloat(columns + 1) * frame.size.width
+        let y = CGFloat(row + 1) / CGFloat(rows + 1) * frame.size.height
         return CGPoint(x: x, y: y)
     }
 

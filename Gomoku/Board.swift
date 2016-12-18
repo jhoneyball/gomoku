@@ -39,6 +39,9 @@ class BoardFactory {
     static func makeBoard(columns: Int, rows: Int) -> Board {
         return BoardData(columns: columns, rows: rows)
     }
+    static func makeBoardState(columns: Int, rows: Int) -> BoardState {
+        return BoardData(columns: columns, rows: rows)
+    }
 }
 
 private class BoardData: Board, BoardState {

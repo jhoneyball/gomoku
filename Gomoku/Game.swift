@@ -30,8 +30,10 @@ private class GameGomokuImplementation: GameGomoku {
         if win.state == false {
             if board.get(intersection: intersection) == Player.Empty {
                 board.place(intersection: intersection, player: player)
-                if rules.checkIsWin(board: board as! BoardState, intersection: intersection, player: player) {
-                    win = Win(state: true, player: player)
+                if let boardState = board as? BoardState {
+                    if rules.checkIsWin(board: boardState, intersection: intersection, player: player) {
+                        win = Win(state: true, player: player)
+                    }
                 }
                 player = other(player: player)
                 print(PrintBoard.printAsFormattedString(board: board))
