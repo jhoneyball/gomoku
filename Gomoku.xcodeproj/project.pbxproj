@@ -224,20 +224,20 @@
 				TargetAttributes = {
 					0D790BE11DB27DF7006F38C1 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = ULZ8C8UG65;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = EF4UQ57PCN;
+						ProvisioningStyle = Manual;
 					};
 					0D790BF51DB27DF7006F38C1 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = ULZ8C8UG65;
+						DevelopmentTeam = EF4UQ57PCN;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						TestTargetID = 0D790BE11DB27DF7006F38C1;
 					};
 					0D790C001DB27DF7006F38C1 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = ULZ8C8UG65;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = EF4UQ57PCN;
+						ProvisioningStyle = Manual;
 						TestTargetID = 0D790BE11DB27DF7006F38C1;
 					};
 				};
@@ -478,10 +478,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = EF4UQ57PCN;
 				INFOPLIST_FILE = Gomoku/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.honeyball.Gomoku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6edfd282-7dbe-4e52-9ef3-bce567688d22";
+				PROVISIONING_PROFILE_SPECIFIER = "James Honeyball Development";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -490,10 +493,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = EF4UQ57PCN;
 				INFOPLIST_FILE = Gomoku/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.honeyball.Gomoku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "2776f4ed-d6b8-498a-81b7-b78594d05c2b";
+				PROVISIONING_PROFILE_SPECIFIER = "James Honeyball AppStore Distribution";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -504,10 +511,12 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = EF4UQ57PCN;
 				INFOPLIST_FILE = GomokuTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.honeyball.GomokuTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Gomoku.app/Gomoku";
@@ -520,10 +529,12 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = EF4UQ57PCN;
 				INFOPLIST_FILE = GomokuTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.honeyball.GomokuTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Gomoku.app/Gomoku";
 			};
@@ -533,10 +544,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = EF4UQ57PCN;
 				INFOPLIST_FILE = GomokuUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.honeyball.GomokuUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b88acbf3-4d94-406e-a835-9e3fcb6d6547";
+				PROVISIONING_PROFILE_SPECIFIER = "James Honeyball Development";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Gomoku;
 			};
@@ -546,10 +560,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = EF4UQ57PCN;
 				INFOPLIST_FILE = GomokuUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.honeyball.GomokuUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b88acbf3-4d94-406e-a835-9e3fcb6d6547";
+				PROVISIONING_PROFILE_SPECIFIER = "James Honeyball Development";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Gomoku;
 			};
